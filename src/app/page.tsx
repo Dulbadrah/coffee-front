@@ -1,8 +1,9 @@
-
-import { Container } from "@/components/home/container";
+import { Container } from "@/components/home/Container";
 
 export default function Home() {
-  return <div>
-    <Container/>
-  </div>;
+  return (
+    <div>
+      <Container />
+    </div>
+  );
 }
