@@ -1,9 +1,9 @@
-import { Container } from "@/components/home/Container";
+import { SideBar } from "@/components/SideBar";
 
 export default function Home() {
   return (
     <div>
-      <Container />
+      <SideBar />
     </div>
   );
 }

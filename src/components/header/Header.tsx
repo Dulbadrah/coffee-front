@@ -20,7 +20,9 @@ export const Header = () => {
           <div className="pt-1.5">Buy Me Coffee</div>
         </div>
         <div className="flex gap-6">
-          <div className="pt-1.5">image</div>
+          <div className="pt-1.5">
+            <img src={"image"} className="w-[40px] h-[40px]"></img>
+          </div>
           <div className="pt-1.5">Jake</div>
           <div>
             <Select>
@@ -29,12 +31,7 @@ export const Header = () => {
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectLabel>Fruits</SelectLabel>
-                  <SelectItem value="apple">Apple</SelectItem>
-                  <SelectItem value="banana">Banana</SelectItem>
-                  <SelectItem value="blueberry">Blueberry</SelectItem>
-                  <SelectItem value="grapes">Grapes</SelectItem>
-                  <SelectItem value="pineapple">Pineapple</SelectItem>
+                  <SelectItem value="apple">Logout</SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>
