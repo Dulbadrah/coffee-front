@@ -23,7 +23,7 @@ export const Header = () => {
           <div className="pt-1.5">
             <img
               src={"https://i.pravatar.cc/100"}
-              className="w-[40px] h-[40px]"
+              className="w-[40px] h-[40px] rounded-full mx-auto border-4 object-cover"
             ></img>
           </div>
           <div className="pt-1.5">Jake</div>
