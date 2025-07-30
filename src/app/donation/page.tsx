@@ -1,9 +1,9 @@
 "use client";
 
-import { BuySomeoneCoffee } from "../components/BuySomeoneCoffee";
-import CoverImage from "../components/CoverImage";
+import { BuySomeoneCoffee } from "./components/BuySomeoneCoffee";
+import CoverImage from "./components/CoverImage";
+import ProfileCard from "./components/ProfileCard";
 // import { BuySomeoneCoffee } from "../components/BuySomeoneCoffee";
-import ProfileCard from "../components/ProfileCard";
 
 const DonationPage = () => {
   // const search = useSearchParams();
