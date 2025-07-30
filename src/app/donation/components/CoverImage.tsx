@@ -1,4 +1,4 @@
-import CoverImageUploader from "../../utils/ImageCloudinary";
+import CoverImageUploader from "../../../utils/ImageCloudinary";
 
 export default function CoverImage() {
   const handleCoverSave = (imageUrl: string) => {

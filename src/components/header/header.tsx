@@ -21,7 +21,10 @@ export const Header = () => {
         </div>
         <div className="flex gap-6">
           <div className="pt-1.5">
-            <img src={"image"} className="w-[40px] h-[40px]"></img>
+            <img
+              src={"https://i.pravatar.cc/100"}
+              className="w-[40px] h-[40px]"
+            ></img>
           </div>
           <div className="pt-1.5">Jake</div>
           <div>
