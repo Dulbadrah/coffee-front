@@ -6,6 +6,8 @@ export const HomeButtons = () => {
       <div className="flex flex-col gap-2 w-[200px] rounded-b-full">
         <Link href={`/home`}>
           <button className="flex hover:bg-secondary/80">Home</button>
+        </Link>
+        <Link href={"/explore"}>
           <button className="flex hover:bg-secondary/80">explore</button>
         </Link>
         <Link href={`/donation`}>
