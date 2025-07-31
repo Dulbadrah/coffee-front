@@ -19,7 +19,10 @@ export const HomeCartSharePageLink = () => {
       <div className="flex justify-between p-10">
         <div className="flex gap-3">
           <div>
-            <img src={"https://i.pravatar.cc/100"}></img>
+            <img
+              src={"https://i.pravatar.cc/100"}
+              className="rounded-full mx-auto border-4 object-cover"
+            ></img>
           </div>
           <div>
             <div>Jake</div>
