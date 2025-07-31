@@ -2,8 +2,8 @@
 
 import { BuySomeoneCoffee } from "./components/BuySomeoneCoffee";
 import CoverImage from "./components/CoverImage";
-// import { BuySomeoneCoffee } from "../components/BuySomeoneCoffee";
 import ProfileCard from "./components/ProfileCard";
+// import { BuySomeoneCoffee } from "../components/BuySomeoneCoffee";
 
 const DonationPage = () => {
   // const search = useSearchParams();
@@ -21,6 +21,7 @@ const DonationPage = () => {
   //    };
   //    getFilter();
   //  }, [genreId, page]);
+  // jaja
 
   return (
     <div className="bg-gray-100 min-h-screen py-10 px-4">
