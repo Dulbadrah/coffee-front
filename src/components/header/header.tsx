@@ -9,25 +9,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import Link from "next/link";
 export const Header = () => {
   return (
     <div>
       <div className="flex justify-between px-10 py-4">
         <div className="flex gap-3">
           <div className="pt-1.5">
-            <Link href={"/"}>
-              <Coffee />
-            </Link>
+            <Coffee />
           </div>
           <div className="pt-1.5">Buy Me Coffee</div>
         </div>
         <div className="flex gap-6">
           <div className="pt-1.5">
-            <img
-              src={"https://i.pravatar.cc/100"}
-              className="w-[40px] h-[40px] rounded-full mx-auto border-4 object-cover"
-            ></img>
+            <img src={"image"} className="w-[40px] h-[40px]"></img>
           </div>
           <div className="pt-1.5">Jake</div>
           <div>
