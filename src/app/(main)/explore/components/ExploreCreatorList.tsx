@@ -1,5 +1,5 @@
 import { User2 } from "lucide-react";
-import { Items } from "../type";
+
   type Creator = {
   title: string;
   text: string;

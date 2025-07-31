@@ -21,14 +21,13 @@ type Creator = {
   title: string;
   text: string;
 };
-  const dummyCreators:Creator[]=[]
+  const dummyCreators:Creator[ ]=[]
 
   return (
     <div className="flex flex-col gap-10 text-black mt-6">
       {items.map((all, index) => (
         <div key={index} className="flex flex-col gap-4">
                   <ExploreCreatorList creators={dummyCreators} />
-          {/* Дээшээ ExploreMain */}
           <ExploreMain />
 
           <div className="grid grid-cols-2 gap-8">
