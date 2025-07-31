@@ -33,7 +33,7 @@ export const PaymentSection = () => {
 
           {/* Continue Button */}
           <div className="pt-6">
-            <Button type="submit " className="w-full">
+            <Button type="submit" className="w-full">
               Continue
             </Button>
           </div>
