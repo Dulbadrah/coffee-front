@@ -26,7 +26,7 @@ export const HomeCartSharePageLink = () => {
           </div>
           <div>
             <div>Jake</div>
-            <div>jkrhe,msb dikjsd.gmail.com</div>
+            <div>Mashgoygmail.com</div>
           </div>
         </div>
         <div>
