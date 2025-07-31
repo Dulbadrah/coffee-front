@@ -13,8 +13,11 @@ export const HomeButtons = () => {
         <Link href={`/donation`}>
           <button className="flex hover:bg-secondary/80">view-page</button>
         </Link>
-
-        <button className="flex hover:bg-secondary/80">Account-Settings</button>
+        <Link href={"/AccountSettings"}>
+          <button className="flex hover:bg-secondary/80">
+            Account-Settings
+          </button>
+        </Link>
       </div>
     </div>
   );
