@@ -11,6 +11,7 @@ import { Camera } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { SetPass } from "./SetPass";
+import { PaymentSection } from "@/app/payment/components/PaymentSection";
 
 export default function AccountPage() {
   const [name, setName] = useState("Jake");
@@ -66,7 +67,7 @@ export default function AccountPage() {
         <Button className="w-full">Save changes</Button>
       </div>
       <SetPass />
-
+      <PaymentSection />
       {/* Set password */}
     </div>
   );

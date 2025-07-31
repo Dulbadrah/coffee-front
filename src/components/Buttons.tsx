@@ -1,22 +1,29 @@
 import Link from "next/link";
+import { Button } from "./ui/button";
 
 export const HomeButtons = () => {
   return (
     <div>
       <div className="flex flex-col gap-2 w-[200px] rounded-b-full">
         <Link href={`/home`}>
-          <button className="flex hover:bg-secondary/80">Home</button>
+          <Button variant="outline" className="flex hover:bg-secondary/80">
+            Home
+          </Button>
         </Link>
         <Link href={"/explore"}>
-          <button className="flex hover:bg-secondary/80">explore</button>
+          <Button variant="outline" className="flex hover:bg-secondary/80">
+            Explore
+          </Button>
         </Link>
         <Link href={`/donation`}>
-          <button className="flex hover:bg-secondary/80">view-page</button>
+          <Button variant="outline" className="flex hover:bg-secondary/80">
+            View-page
+          </Button>
         </Link>
         <Link href={"/AccountSettings"}>
-          <button className="flex hover:bg-secondary/80">
+          <Button variant="outline" className="flex hover:bg-secondary/80">
             Account-Settings
-          </button>
+          </Button>
         </Link>
       </div>
     </div>

@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
+import { CameraIcon } from "lucide-react";
 
 type CoverImageUploaderProps = {
   onSave: (url: string) => void;
@@ -11,12 +12,15 @@ export default function CoverImageUploader({
 }: CoverImageUploaderProps) {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
+
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const coverUrl = process.env.NEXT_PUBLIC_CLOUDINARY_IMAGE || "";
   const handleSave = () => {
     if (imageUrl) {
       onSave(imageUrl);
+      setIsSaved(true);
     }
   };
 
@@ -50,6 +54,7 @@ export default function CoverImageUploader({
 
       if (data.secure_url) {
         setImageUrl(data.secure_url);
+        setIsSaved(false);
       }
     } catch (error) {
       console.error("Upload error:", error);
@@ -72,10 +77,20 @@ export default function CoverImageUploader({
       )}
 
       {/* if image is selected, show Save/Cancel; otherwise, show Add button */}
-      {!imageUrl ? (
-        <div className="p-80 justify-center items-center">
+      {imageUrl && isSaved ? (
+        <div className="absolute top-4 right-4">
           <button
             onClick={handleImageClick}
+            className=" flex justify-center bg-white text-gray-700 px-4 py-2 text-sm rounded shadow hover:bg-gray-100"
+          >
+            <CameraIcon /> Change photo
+          </button>
+        </div>
+      ) : !imageUrl ? (
+        <div className="flex justify-center items-center h-60">
+          <button
+            onClick={handleImageClick}
+            disabled={loading}
             className="bg-white text-sm text-gray-700 px-4 py-2 rounded shadow hover:bg-gray-100"
           >
             {loading ? "Uploading..." : "Add a cover image"}
