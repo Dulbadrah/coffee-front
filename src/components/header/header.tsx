@@ -9,13 +9,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import Link from "next/link";
 export const Header = () => {
   return (
     <div>
       <div className="flex justify-between px-10 py-4">
         <div className="flex gap-3">
           <div className="pt-1.5">
-            <Coffee />
+            <Link href={"/"}>
+              <Coffee />
+            </Link>
           </div>
           <div className="pt-1.5">Buy Me Coffee</div>
         </div>

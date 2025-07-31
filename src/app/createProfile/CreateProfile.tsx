@@ -13,8 +13,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Camera } from "lucide-react";
 import CoverImageUploaderProfile from "@/utils/imageCloudinaryProfiile";
 
 export function CreateProfile() {
@@ -26,10 +24,52 @@ export function CreateProfile() {
   const [url, setUrl] = useState(
     "https://api.cloudinary.com/v1_1/dqugs5a11/image/upload"
   );
+
+  const [errors, setErrors] = useState({
+    name: "",
+    about: "",
+    url: "",
+  });
+
   const handleCoverSaveProfile = (imageUrl: string) => {
     console.log("Saved image URL:", imageUrl);
-    // Энэ хэсэгт API-р хадгалах логик орж болно
   };
+
+  const validateFields = () => {
+    let hasError = false;
+    const newErrors = {
+      name: "",
+      about: "",
+      url: "",
+    };
+
+    if (name.trim().length < 3) {
+      newErrors.name = "Name must be at least 3 characters";
+      hasError = true;
+    }
+
+    if (about.trim().length < 3) {
+      newErrors.about = "About must be at least 3 characters";
+      hasError = true;
+    }
+
+    if (url.trim().length < 3) {
+      newErrors.url = "URL must be at least 3 characters";
+      hasError = true;
+    }
+
+    setErrors(newErrors);
+    return !hasError;
+  };
+
+  const handleSave = () => {
+    if (validateFields()) {
+      // Validation passed
+      console.log("Profile saved:", { name, about, url });
+      setOpen(false);
+    }
+  };
+
   return (
     <>
       <Button onClick={() => setOpen(true)}>Edit Profile</Button>
@@ -43,13 +83,9 @@ export function CreateProfile() {
             </DialogDescription>
           </DialogHeader>
 
-          <div className=" flex mb-4 relative">
+          <div className="flex mb-4 relative">
             <div className="flex flex-col gap-4">
               <CoverImageUploaderProfile onSave={handleCoverSaveProfile} />
-            </div>
-            <div className="absolute bottom-1 right-1 bg-white p-1 rounded-full shadow">
-              <Camera className="w-4 h-4 text-gray-500" />
-              <div></div>
             </div>
           </div>
 
@@ -61,7 +97,11 @@ export function CreateProfile() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
+              {errors.name && (
+                <p className="text-sm text-red-500">{errors.name}</p>
+              )}
             </div>
+
             <div className="grid gap-1">
               <Label htmlFor="about">About</Label>
               <Textarea
@@ -70,7 +110,11 @@ export function CreateProfile() {
                 value={about}
                 onChange={(e) => setAbout(e.target.value)}
               />
+              {errors.about && (
+                <p className="text-sm text-red-500">{errors.about}</p>
+              )}
             </div>
+
             <div className="grid gap-1">
               <Label htmlFor="url">Social media URL</Label>
               <Input
@@ -79,6 +123,9 @@ export function CreateProfile() {
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
               />
+              {errors.url && (
+                <p className="text-sm text-red-500">{errors.url}</p>
+              )}
             </div>
           </div>
 
@@ -86,7 +133,7 @@ export function CreateProfile() {
             <Button variant="outline" onClick={() => setOpen(false)}>
               Cancel
             </Button>
-            <Button onClick={() => setOpen(false)}>Save changes</Button>
+            <Button onClick={handleSave}>Save changes</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

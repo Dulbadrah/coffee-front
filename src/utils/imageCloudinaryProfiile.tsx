@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
+import { Camera } from "lucide-react";
 
 type CoverImageUploaderProps = {
   onSave: (url: string) => void;
@@ -73,10 +74,12 @@ export default function CoverImageUploaderProfile({
 
       {/* if image is selected, show Save/Cancel; otherwise, show Add button */}
       {!imageUrl ? (
-        <div className="w-24 h-24 rounded-full mx-auto border-4 object-cover">
-          <button onClick={handleImageClick}>
-            {loading ? "Uploading..." : "change image"}
-          </button>
+        <div className=" w-24 h-24 rounded-full mx-auto border-4 object-cover">
+          <div className="flex items-center justify-center h-full">
+            <Camera onClick={handleImageClick}>
+              {loading ? "Uploading..." : "Add Cover Image"}
+            </Camera>
+          </div>
         </div>
       ) : (
         <div className="absolute top-4 right-4 flex gap-2">
