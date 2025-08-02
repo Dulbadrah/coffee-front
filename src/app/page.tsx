@@ -3,9 +3,11 @@ import { AccountProfileStat } from "./home/components/AccountProfileStat";
 
 export default function Home() {
   return (
-    <div className="flex ml-30 md:max-w-[1640px] justify-between">
-      <SideBar />
-      <AccountProfileStat />
+    <div className="min-h-screen p-8 font-sans flex gap-6">
+    <div><SideBar/>
     </div>
+<div> <AccountProfileStat /></div>
+    
+  </div>
   );
 }

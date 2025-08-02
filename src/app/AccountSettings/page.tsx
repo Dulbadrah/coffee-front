@@ -4,9 +4,13 @@ import { SideBar } from "@/components/SideBar";
 
 export default function Home() {
   return (
-    <div className="">
+    <div className="flex">
+    <div >
       <SideBar />
+    </div>
+    <div>
       <AccountPage />
     </div>
+  </div>
   );
 }

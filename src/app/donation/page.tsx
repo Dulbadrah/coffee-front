@@ -24,7 +24,7 @@ const DonationPage = () => {
   // jaja
 
   return (
-    <div className="bg-gray-100 min-h-screen py-10 px-4">
+    <div className=" min-h-screen px-4">
       <CoverImage />
       <div className="max-w-5xl mx-auto -mt-16 relative z-10 p-4 grid md:grid-cols-2 gap-6">
         <ProfileCard />

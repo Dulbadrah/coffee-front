@@ -3,9 +3,11 @@ import { SideBar } from "@/components/SideBar";
 
 export default function Home() {
   return (
-    <div className="flex ml-30 md:max-w-[1640px] justify-between">
-      <SideBar />
-      <AccountProfileStat />
+    <div className="flex ">
+      <div><SideBar/>
+      </div>
+  <div> <AccountProfileStat /></div>
+      
     </div>
   );
 }
