@@ -2,7 +2,7 @@ import Image from "next/legacy/image";
  
 export const ExploreMoreLeft = () => {
   return (
-    <div className="w-[632px] h-[273px] absolute top-[369px] left-20 border-[1] bg-white p-4 rounded-sm">
+    <div className="w-[632px] h-[273px] absolute top-[369px] left-50 border-[1] bg-white p-4 rounded-sm">
       <div className="flex items-center gap-3 mb-6">
         <Image src="/Profile.png" alt="Profile" width={40} height={40} />
         <h1 className="text-black font-semibold">Space ranger</h1>
