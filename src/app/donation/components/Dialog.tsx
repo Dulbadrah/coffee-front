@@ -1,6 +1,6 @@
+import { CreateProfile } from "@/app/createProfile/components/CreateProfile";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { CreateProfile } from "@/app/createProfile/CreateProfile";
 
 export function DialogDemo() {
   return (
