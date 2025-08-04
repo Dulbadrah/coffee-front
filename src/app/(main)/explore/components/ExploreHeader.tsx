@@ -1,4 +1,4 @@
-import { Search } from "lucide-react"; // эсвэл өөр icon ашиглаж болно
+ import { Search } from "lucide-react"; // эсвэл өөр icon ашиглаж болно
 
 export const ExploreHeader = () => {
   return (
