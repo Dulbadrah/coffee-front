@@ -1,34 +1,48 @@
+import { Controller, useFormContext } from "react-hook-form";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+
 export const UserName = () => {
+  const { control } = useFormContext();
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div>
-        <label
-          htmlFor="firstName"
-          className="block text-sm font-medium text-gray-700 mb-1"
-        >
-          First name
-        </label>
-        <input
-          type="text"
-          id="firstName"
+      {/* First Name */}
+      <div className="flex flex-col gap-4 ">
+        <Label htmlFor="firstName">First Name</Label>
+        <Controller
           name="firstName"
-          placeholder="Enter your name here"
-          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm p-2"
+          control={control}
+          render={({ field, fieldState: { error } }) => (
+            <>
+              <Input {...field} id="firstName" placeholder="John" />
+              {error && (
+                <p className="text-sm text-red-500 mt-1">{error.message}</p>
+              )}
+            </>
+          )}
         />
       </div>
-      <div>
-        <label
-          htmlFor="lastName"
-          className="block text-sm font-medium text-gray-700 mb-1"
-        >
-          Last name
-        </label>
-        <input
-          type="text"
-          id="lastName"
+
+      {/* Last Name */}
+      <div className="flex flex-col gap-4 ">
+        <Label htmlFor="lastName">Last Name</Label>
+        <Controller
           name="lastName"
-          placeholder="Enter your name here"
-          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm p-2"
+          control={control}
+          render={({ field, fieldState: { error } }) => (
+            <>
+              <Input
+                {...field}
+                value={field.value || ""}
+                id="lastName"
+                placeholder="Doe"
+              />
+              {error && (
+                <p className="text-sm text-red-500 mt-1">{error.message}</p>
+              )}
+            </>
+          )}
         />
       </div>
     </div>
