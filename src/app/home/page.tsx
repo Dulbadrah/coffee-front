@@ -4,10 +4,13 @@ import { SideBar } from "@/components/SideBar";
 export default function Home() {
   return (
     <div className="flex ">
-      <div><SideBar/>
+      <div>
+        <SideBar />
       </div>
-  <div> <AccountProfileStat /></div>
-      
+      <div>
+        {" "}
+        <AccountProfileStat />
+      </div>
     </div>
   );
 }
