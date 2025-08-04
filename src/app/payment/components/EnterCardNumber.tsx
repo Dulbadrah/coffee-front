@@ -7,27 +7,27 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
-// export type Props = {
-//   control: any;
-// };
+import { Control, useFormContext } from "react-hook-form";
 
 export const EnterCardNumber = () => {
+  const { control } = useFormContext();
   return (
-    <div>
-      <label
-        htmlFor="cardNumber"
-        className="block text-sm font-medium text-gray-700 mb-1"
-      >
-        Enter card number
-      </label>
-      <Input
-        // type="text"
-        // id="cardNumber"
-        // name="cardNumber"
-        placeholder="XXXX-XXXX-XXXX-XXXX"
-        maxLength={16}
-      />
-    </div>
+    <FormField
+      control={control}
+      name="cardNumber"
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>Enter card number</FormLabel>
+          <FormControl>
+            <Input
+              {...field}
+              placeholder="XXXX-XXXX-XXXX-XXXX"
+              maxLength={16}
+            />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
   );
 };
