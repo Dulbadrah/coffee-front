@@ -1,4 +1,4 @@
-import { CreateProfile } from "@/app/createProfile/components/CreateProfile";
+import { CreateProfile } from "@/app/create-profile/components/CreateProfile";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
