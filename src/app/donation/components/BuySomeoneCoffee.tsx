@@ -1,6 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { QRDialog } from "./ScanQR";
+import { Dialog } from "@radix-ui/react-dialog";
+
 
 const amounts = [1, 2, 5, 10];
 export const BuySomeoneCoffee = () => {
@@ -13,7 +16,7 @@ export const BuySomeoneCoffee = () => {
   };
 
   return (
-    <div className="bg-white rounded-xl p-6 shadow ">
+    <div className="bg-white rounded-xl p-6 shadow  h-[509px] ">
       <h2 className="text-xl font-semibold mb-4">Buy Jake a Coffee</h2>
 
       <div className="mb-4">
@@ -64,13 +67,14 @@ export const BuySomeoneCoffee = () => {
         ></textarea>
       </div>
 
-      <Button
+      {/* <Button
         onClick={handleSupport}
         disabled={!selectedAmount}
         className="w-full bg-gray-300 text-white py-2 rounded-md hover:bg-gray-400 transition disabled:opacity-50"
       >
-        Support
-      </Button>
+        Support <QRDialog/>
+      </Button> */}
+      <QRDialog/>
     </div>
   );
 };
