@@ -1,3 +1,5 @@
+"use client";
+
 import { useForm, FormProvider } from "react-hook-form";
 import { SelectCountry } from "./SelectCountry";
 import { UserName } from "./UserName";
@@ -7,7 +9,7 @@ import { Button } from "@/components/ui/button";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { paymentSchema, PaymentFormValues } from "@/utils/PaymentFormType";
-import { useEffect, useState } from "react";
+
 export const PaymentSection = () => {
   const methods = useForm<PaymentFormValues>({
     resolver: zodResolver(paymentSchema),
@@ -20,31 +22,14 @@ export const PaymentSection = () => {
     },
   });
 
-  const [formData, setFormData] = useState<PaymentFormValues | null>(null);
-
-  const onSubmit = async (data: PaymentFormValues) => {
-    setFormData(data);
+  const onSubmit = (data: PaymentFormValues) => {
+    console.log("Form data:", data);
   };
-
-  useEffect(() => {
-    if (!formData) return;
-
-    const sendPayment = async () => {
-      try {
-        const response = await fetch("http://localhost:4200/bank");
-        const data = await response.json();
-        console.log("bank", data);
-      } catch (error) {
-        console.error("Failed to fetch payment data", error);
-      }
-    };
-    sendPayment();
-  }, []);
 
   return (
     <FormProvider {...methods}>
       <form
-        // onSubmit={methods.handleSubmit(onSubmit)}
+        onSubmit={methods.handleSubmit(onSubmit)}
         className="border p-6 rounded-lg space-y-4"
       >
         <h2 className="text-2xl font-semibold text-gray-900 mb-2">
