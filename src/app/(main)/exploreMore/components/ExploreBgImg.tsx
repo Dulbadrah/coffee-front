@@ -1,6 +1,7 @@
 import Image from "next/legacy/image";
 import { ExploreMoreLeft } from "./ExploreMoreLeft";
 import { ExploreUrl } from "./ExploreUrl";
+import { ExploreMoreRight } from "./ExploreMoreRight";
  
 export const ExploreBgImg = () => {
   return (
@@ -16,6 +17,7 @@ export const ExploreBgImg = () => {
     
       <ExploreMoreLeft />
       <ExploreUrl/>
+      <ExploreMoreRight/>
     </div>
   );
 };
