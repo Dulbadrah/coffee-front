@@ -1,14 +1,26 @@
 'use client'
-import React from "react";
+
+import React, { useState } from "react";
 import { useFormik } from 'formik';
 import { object, string } from 'yup';
+import axios from 'axios'
+import { LoaderCircle } from 'lucide-react';
+import { useRouter } from 'next/navigation'
+import { Button } from "@/components/ui/button";
 
 const loginSchema = object({
   email: string().email().required('Email ee bichne uu!'),
   password: string().required('Password oo buglunu uu!')
 });
 
-const SignUpEmailPassword = ({setCurrentStep}:any) => {
+type SignUpEmailPasswordProps = {
+  setCurrentStep: any;
+  userName: string;
+}
+
+const SignUpEmailPassword = ({ userName }: SignUpEmailPasswordProps) => {
+  const [loading, setLoading] = useState(false)
+  const router = useRouter()
 
   const formik = useFormik({
     initialValues: {
@@ -16,14 +28,17 @@ const SignUpEmailPassword = ({setCurrentStep}:any) => {
       password: ``,
     },
     validationSchema: loginSchema,
-    onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async values => {
+      setLoading(true)
+      await signUp(userName, values.email, values.password)
+      router.push('/login')
     },
-    
+
   });
 
 
-  const { errors } = formik
+  const { errors, isValid } = formik
+
 
 
   return (
@@ -59,14 +74,17 @@ const SignUpEmailPassword = ({setCurrentStep}:any) => {
               placeholder="Enter password here"
               className="w-full border border-gray-300 rounded px-4 py-2 mb-4"
             />
-                     {errors.password && <div className="flex gap-2 items-center"> <img className="h-[11.67px] w-[11.67px]" src="/img/XVector.png" alt="" /> <p className="text-[13px] text-red-500">{errors.password}</p></div>}
+            {errors.password && <div className="flex gap-2 items-center"> <img className="h-[11.67px] w-[11.67px]" src="/img/XVector.png" alt="" /> <p className="text-[13px] text-red-500">{errors.password}</p></div>}
           </div>
-          <button
+          <Button
             type="submit"
-            className="w-full bg-gray-400 text-white py-2 rounded"
+            className="w-full bg-gray-400 text-white py-2 rounded flex justify-center gap-2 items-center"
+            
+            disabled={loading}
           >
-            Continue
-          </button>
+            
+            Sign up {loading && <LoaderCircle size={18} className="animate-spin"/>}
+          </Button>
         </form>
       </div>
     </div>
@@ -74,3 +92,17 @@ const SignUpEmailPassword = ({setCurrentStep}:any) => {
 };
 
 export default SignUpEmailPassword;
+
+const signUp = async (username: string, email: string, password: string) => {
+  try {
+
+     await axios.post('http://localhost:4200/auth/sign-up', {
+      username,
+      email,
+      password
+    })
+  } catch (error) {
+    console.log(error)
+  }
+
+}
