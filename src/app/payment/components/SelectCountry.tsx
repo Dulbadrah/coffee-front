@@ -1,4 +1,4 @@
-import { useFormContext, Controller } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 
 export const SelectCountry = () => {
   const { control } = useFormContext();

@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { paymentSchema, PaymentFormValues } from "@/utils/PaymentFormType";
 import { useEffect, useState } from "react";
-import { log } from "node:console";
 export const PaymentSection = () => {
   const methods = useForm<PaymentFormValues>({
     resolver: zodResolver(paymentSchema),
@@ -45,7 +44,7 @@ export const PaymentSection = () => {
   return (
     <FormProvider {...methods}>
       <form
-        onSubmit={methods.handleSubmit(onSubmit)}
+        // onSubmit={methods.handleSubmit(onSubmit)}
         className="border p-6 rounded-lg space-y-4"
       >
         <h2 className="text-2xl font-semibold text-gray-900 mb-2">

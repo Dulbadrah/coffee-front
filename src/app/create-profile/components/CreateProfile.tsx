@@ -18,9 +18,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import CoverImageUploaderProfile from "@/utils/imageCloudinaryProfiile";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export function CreateProfile() {
+  const router = useRouter();
   const [coverImage, setCoverImage] = useState("");
 
   const handleCoverSaveProfile = (imageUrl: string) => {
@@ -40,7 +41,7 @@ export function CreateProfile() {
 
   const handleSubmit = async (values: any, { setSubmitting }: any) => {
     try {
-      const userId = 12;
+      const userId = 20;
 
       const response = await axios.post(
         `http://localhost:4200/profile/create-profile/${userId}`,
@@ -56,6 +57,7 @@ export function CreateProfile() {
 
       if (response.status === 200) {
         console.log("Profile created successfully:", response.data);
+        router.push("/payment");
       } else {
         console.error("Failed to create profile:", response.status);
       }
