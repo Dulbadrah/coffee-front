@@ -39,7 +39,7 @@ export const PaymentSection = () => {
         console.error("Failed to fetch payment data", error);
       }
     };
-    sendPayment();
+    sendPayment(); //zasalt hiih
   }, []);
 
   return (
