@@ -7,19 +7,19 @@ import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { number } from "zod";
 
-const donationSchema = object({
-  selectedAmount: string().required("Та хэдэн ширхэг кофе өгөхөө сонгоно уу"),
-  socialUrl: string(),
-  message: string(),
-});
+// const donationSchema = object({
+//   selectedAmount: string().required("Та хэдэн ширхэг кофе өгөхөө сонгоно уу"),
+//   socialUrl: string(),
+//   message: string(),
+// });
 const amounts = [1, 2, 5, 10];
 export const BuySomeoneCoffee = () => {
   const [selectedAmount, setSelectedAmount] = useState<number | null>(5);
   const [socialUrl, setSocialUrl] = useState("");
   const [message, setMessage] = useState("");
 
-  const donorId = 14;
-  const recipientId = 13;
+  const donorId = 13;
+  const recipientId = 12;
   const handleSupport = async () => {
     try {
       if (!selectedAmount) return alert("Та мөнгөний дүнгээ сонгоно уу");

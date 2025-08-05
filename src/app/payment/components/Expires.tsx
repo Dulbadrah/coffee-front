@@ -13,11 +13,11 @@ export const Expires = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <div className="grid grid-cols-3 gap-4">
+   <div className="grid grid-cols-3 gap-4">
       {/* Month */}
       <FormField
         control={control}
-        name="expMonth"
+        name="expiryMonth" 
         render={({ field }) => (
           <FormItem>
             <FormLabel>Expires</FormLabel>
@@ -47,7 +47,7 @@ export const Expires = () => {
       {/* Year */}
       <FormField
         control={control}
-        name="expYear"
+        name="expiryYear" 
         render={({ field }) => (
           <FormItem>
             <FormLabel className="invisible">Year</FormLabel>
@@ -83,6 +83,7 @@ export const Expires = () => {
             <FormControl>
               <Input
                 {...field}
+                value={field.value || ''} 
                 maxLength={4}
                 placeholder="CVC"
                 className="p-2"
