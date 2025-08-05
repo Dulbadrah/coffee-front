@@ -27,8 +27,10 @@ export const AccountProfileStat = () => {
   };
 
   useEffect(() => {
-    const cartItems = localStorage.getItem("user");
-    const accessToken = cartItems;
+    // const cartItems = localStorage.getItem("user");
+    const accessToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTQzNzE2NDMsInBheWxvYWQiOnsiZW1haWwiOiJ0ZXN0N0BnbWFpbC5jb20iLCJ1c2VySWQiOjI2fSwiaWF0IjoxNzU0MzY4MDQzfQ.PYUse33jy-DiH75XxvtWeufryF8khkIU2G2jBzxlxo0
+ `;
+
     const getCurrentUser = async () => {
       const userData = await getCurrentUserByAccessToken(accessToken);
       console.log("userData", userData);
@@ -36,7 +38,7 @@ export const AccountProfileStat = () => {
     };
     getCurrentUser();
   }, []);
-
+  console.log(user);
   return (
     <div className="flex flex-col gap-6">
       <div className="border-1 rounded-lg">
