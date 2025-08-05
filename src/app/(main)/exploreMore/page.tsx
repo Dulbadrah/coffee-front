@@ -3,7 +3,7 @@ import { ExploreBgImg } from "./components/ExploreBgImg";
  
 export default function ExploreMorePage() {
   return(
-   <div>
+   <div className="container mx-auto">
     <ExploreBgImg/>
   </div>
   )
