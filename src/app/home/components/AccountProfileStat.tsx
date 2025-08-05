@@ -1,33 +1,50 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import { HomeForSection } from "./HomeForSection";
 import { HomeOneSection } from "./HomeOneSection";
 import { HomeThreeSection } from "./HomeThreeSection";
 import { HomeTwoSection } from "./HomeTwoSection";
 
 export const AccountProfileStat = () => {
-  const moduls = [
-    {
-      id: "1",
-      name: "Thank you for being so awesome everyday! You always manage to brighten up my day when all I can contribute at the moment ",
-      mount: "10$",
-      date: "10 hours ago",
-    },
-    { id: "2", name: "", mount: "20$", date: "10 hours ago" },
-    { id: "3", name: "threee", mount: "30$", date: "10 hours ago" },
-    { id: "4", name: "for", mount: "12$", date: "10 hours ago" },
-  ];
+  const [user, setUser] = useState();
+
+  const getCurrentUserByAccessToken = async (accessToken: string | null) => {
+    try {
+      const response = await fetch(
+        "http://localhost:4200/profile/current-user",
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    const cartItems = localStorage.getItem("user");
+    const accessToken = cartItems;
+    const getCurrentUser = async () => {
+      const userData = await getCurrentUserByAccessToken(accessToken);
+      console.log("userData", userData);
+      setUser(userData);
+    };
+    getCurrentUser();
+  }, []);
+
   return (
-    // default
-    <div className="flex flex-col gap-6 ">
-      <div className="border-1 rounded-lg ">
+    <div className="flex flex-col gap-6">
+      <div className="border-1 rounded-lg">
         <HomeOneSection />
         <HomeTwoSection />
       </div>
       <HomeThreeSection />
-      <div>
-        <HomeForSection moduls={moduls} />
-      </div>
+      <div>{/* <HomeForSection moduls={user} /> */}</div>
     </div>
   );
 };
-{
-}
