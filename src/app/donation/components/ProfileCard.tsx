@@ -7,22 +7,6 @@ import { DialogDemo } from "./Dialog";
 import { Heart } from "lucide-react";
 import { RecentSupporters } from "./RecentSupporters";
 
-const amounts = [1, 2, 5, 10];
-const mockSupporters = [
-  {
-    name: "John Doe",
-    amount: 5,
-    message: "Great work, keep it up!",
-    profileImageUrl: "https://i.pravatar.cc/40?u=johndoe",
-  },
-  {
-    name: "Jane Smith",
-    amount: 2,
-    message: "Loving your content!",
-    profileImageUrl: "https://i.pravatar.cc/40?u=janesmith",
-  },
-];
-
 const handleSeeMore = () => {
   alert("See more supporters clicked!");
 };
@@ -66,15 +50,14 @@ export default function ProfileCard() {
       </div>
 
       <div>
-      <div className="border rounded-lg p-4 flex flex-col  items-center justify-center text-sm">
-            <span>
-              {" "}
-              <Heart className="fill-black" />
-            </span>
-            <span> Be the first one to support Jake</span>
-          </div>
-         <RecentSupporters supporters={mockSupporters}  onSeeMoreClick={handleSeeMore}/>
-       
+        {/* <div className="border rounded-lg p-4 flex flex-col  items-center justify-center text-sm">
+          <span>
+            {" "}
+            <Heart className="fill-black" />
+          </span>
+          <span> Be the first one to support Jake</span>
+        </div> */}
+        <RecentSupporters onSeeMoreClick={handleSeeMore} />
       </div>
     </div>
   );

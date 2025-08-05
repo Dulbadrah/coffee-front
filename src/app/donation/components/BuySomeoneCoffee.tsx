@@ -1,18 +1,48 @@
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { QRDialog } from "./ScanQR";
-import { Dialog } from "@radix-ui/react-dialog";
 
+import { object, string } from "yup";
+import axios from "axios";
+import { Button } from "@/components/ui/button";
+import { number } from "zod";
 
+const donationSchema = object({
+  selectedAmount: string().required("Та хэдэн ширхэг кофе өгөхөө сонгоно уу"),
+  socialUrl: string(),
+  message: string(),
+});
 const amounts = [1, 2, 5, 10];
 export const BuySomeoneCoffee = () => {
   const [selectedAmount, setSelectedAmount] = useState<number | null>(5);
   const [socialUrl, setSocialUrl] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleSupport = () => {
-    console.log({ selectedAmount, socialUrl, message });
+  const donorId = 14;
+  const recipientId = 13;
+  const handleSupport = async () => {
+    try {
+      if (!selectedAmount) return alert("Та мөнгөний дүнгээ сонгоно уу");
+
+      const donationPayload = {
+        amount: selectedAmount,
+        specialMessage: message,
+        socialURLOrBuyMeACoffee: socialUrl,
+        donorId: Number(donorId),
+        recipientId: Number(recipientId),
+      };
+
+      const response = await axios.post(
+        "http://localhost:4200/donation/create-donation",
+        donationPayload
+      );
+
+      console.log("Donation success:", response.data);
+      alert("Амжилттай дэмжлээ!");
+    } catch (error) {
+      console.error("Donation failed:", error);
+      alert("Алдаа гарлаа. Дахин оролдоно уу.");
+    }
   };
 
   return (
@@ -67,14 +97,16 @@ export const BuySomeoneCoffee = () => {
         ></textarea>
       </div>
 
-      {/* <Button
+      <Button
         onClick={handleSupport}
         disabled={!selectedAmount}
         className="w-full bg-gray-300 text-white py-2 rounded-md hover:bg-gray-400 transition disabled:opacity-50"
       >
-        Support <QRDialog/>
-      </Button> */}
-      <QRDialog/>
+        {" "}
+        Support{" "}
+      </Button>
+      {/* <QRDialog /> */}
     </div>
   );
 };
+//webhook tusad ni api
