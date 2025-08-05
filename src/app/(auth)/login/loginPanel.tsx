@@ -1,10 +1,13 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import { object, string } from "yup";
 import Link from "next/link";
-import axios from "axios";
-import { useRouter } from "next/navigation";
+import axios from 'axios'
+import { useRouter } from 'next/navigation'
+import { LoaderCircle } from "lucide-react";
+
+
 
 const loginSchema = object({
   email: string().email().required("Email ee bichne uu!"),
@@ -22,7 +25,9 @@ type LoginResponse = {
 };
 
 const LoginForm = () => {
-  const router = useRouter();
+
+  const [loading, setLoading] = useState(false)
+  const router = useRouter()
 
   const formik = useFormik({
     initialValues: {
@@ -30,16 +35,15 @@ const LoginForm = () => {
       password: ``,
     },
     validationSchema: loginSchema,
-    onSubmit: async (values) => {
-      const { data } = await axios.post<LoginResponse>(
-        "http://localhost:4200/auth/login",
-        values
-      );
-
+    onSubmit: async values => {
+      setLoading(true)
+      const { data } = await axios.post<LoginResponse>('http://localhost:4200/auth/login', values)
+      console.log(data.isCreatedProfile);
+      
       if (data.isCreatedProfile) {
-        router.push("/");
+        router.push("/home");
       } else {
-        router.push("/create-profile");
+        // router.push("/create-profile");
       }
     },
   });
@@ -107,9 +111,9 @@ const LoginForm = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-gray-400 text-white py-2 rounded"
+            className="w-full bg-gray-400 text-white py-2 rounded flex justify-center gap-2 items-center"
           >
-            Login
+            Login {loading && <LoaderCircle size={18} className="animate-spin"/>}
           </button>
         </form>
       </div>
