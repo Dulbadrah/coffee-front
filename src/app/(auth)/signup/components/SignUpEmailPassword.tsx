@@ -8,9 +8,9 @@ import { LoaderCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
-const loginSchema = object({
-  email: string().email().required("Email ee bichne uu!"),
-  password: string().required("Password oo buglunu uu!"),
+const signUpEmailSchema = object({
+  email: string().email().required('Email ee bichne uu!'),
+  password: string().required('Password oo buglunu uu!')
 });
 
 type SignUpEmailPasswordProps = {
@@ -27,11 +27,11 @@ const SignUpEmailPassword = ({ userName }: SignUpEmailPasswordProps) => {
       email: "",
       password: ``,
     },
-    validationSchema: loginSchema,
-    onSubmit: async (values) => {
-      setLoading(true);
-      await signUp(userName, values.email, values.password);
-      router.push("/login");
+    validationSchema: signUpEmailSchema,
+    onSubmit: async values => {
+      setLoading(true)
+      await signUp(userName, values.email, values.password)
+      router.push('/create-profile')
     },
   });
 
