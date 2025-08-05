@@ -15,6 +15,7 @@ export const EnterCardNumber = () => {
     <FormField
       control={control}
       name="cardNumber"
+      
       render={({ field }) => (
         <FormItem>
           <FormLabel>Enter card number</FormLabel>
