@@ -1,10 +1,7 @@
 import Image from "next/legacy/image";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
-  DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -16,12 +13,12 @@ export const ExploreMoreRight = () => {
   return (
     <div className="w-full h-[509px]  border bg-white p-4 rounded-sm overflow-hidden ">
       <h2 className="text-lg font-semibold">Buy Space ranger a Coffee</h2>
-      <p>Select amount:</p>
+      <p className="mt-6">Select amount:</p>
       <div className="flex gap-2 mt-2">
         {items.map((_, i) => (
           <div
             key={i}
-            className="flex items-center justify-center border rounded-sm bg-[rgba(244,244,245,0.8)] cursor-pointer w-[74px] h-[40px]"
+            className="flex items-center justify-center border rounded-sm bg-[rgba(244,244,245,0.8)] cursor-pointer w-full h-[40px]"
           >
             <div className="flex items-center gap-1">
               <Image src="/coffee.png" alt="coffee" width={16} height={16} />
@@ -30,20 +27,20 @@ export const ExploreMoreRight = () => {
           </div>
         ))}
       </div>
-      <div>
+      <div className="mt-8">
         <h2>Enter BuyMeCoffee or social acount URL:</h2>
         <input
-          className="w-[580px] h-10 border rounded-sm"
+          className="w-full h-10 border mt-2 rounded-sm px-3"
           type="text"
           placeholder="buymeacoffee.com/"
         />
       </div>
-      <div>
+      <div className="mt-8">
         <h2>Special message:</h2>
         <input
-          className="w-[580px] h-[131px] border rounded-sm"
+          className="w-full h-[131px] mt-2 border rounded-sm pb-16 px-3 placeholder-gray-500"
           type="text"
-          placeholder="Please write your message here"
+          placeholder="Thank you for being so awesome everyday!"
         />
       </div>
 
@@ -61,7 +58,7 @@ export const ExploreMoreRight = () => {
             <QRCode
               size={256}
               style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-              value={"asdadnjdsf"}
+              value={"hhha"}
               viewBox={`0 0 256 256`}
             />
           </DialogContent>
