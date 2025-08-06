@@ -7,7 +7,7 @@ import { HomeThreeSection } from "./HomeThreeSection";
 import { HomeTwoSection } from "./HomeTwoSection";
 
 export const AccountProfileStat = () => {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState([]);
 
   const getCurrentUserByAccessToken = async (accessToken: string | null) => {
     try {
@@ -28,7 +28,7 @@ export const AccountProfileStat = () => {
 
   useEffect(() => {
     // const cartItems = localStorage.getItem("user");
-    const accessToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTQzNzE2NDMsInBheWxvYWQiOnsiZW1haWwiOiJ0ZXN0N0BnbWFpbC5jb20iLCJ1c2VySWQiOjI2fSwiaWF0IjoxNzU0MzY4MDQzfQ.PYUse33jy-DiH75XxvtWeufryF8khkIU2G2jBzxlxo0
+    const accessToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTQ0NDc0MDYsInBheWxvYWQiOnsiZW1haWwiOiJkdWxAZ21haWwuY29tIiwidXNlcklkIjozMH0sImlhdCI6MTc1NDQ0MzgwNn0.MElu739zpUxHdbhPcz54VI7DtWpHMnzu3R6xcL2xK8I
  `;
 
     const getCurrentUser = async () => {
@@ -46,7 +46,9 @@ export const AccountProfileStat = () => {
         <HomeTwoSection />
       </div>
       <HomeThreeSection />
-      <div>{/* <HomeForSection moduls={user} /> */}</div>
+      <div>
+        <HomeForSection moduls={user} />
+      </div>
     </div>
   );
 };
