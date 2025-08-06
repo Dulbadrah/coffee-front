@@ -1,8 +1,8 @@
 import { ProfileAbout } from "./ProfileAbout";
-import { ExploreMoreRight } from "./ExploreMoreRight";
+// import { ExploreMoreRight } from "./ExploreMoreRight";
 import { Donation, ProfileType } from "@/lib/types";
 import { SocialProfile } from "./SocialProfile";
-import { ExploreMoreSupport } from "./ExploreMoreSupport";
+// import { ExploreMoreSupport } from "./ExploreMoreSupport";
 
 type ProfileProps = {
   profile: ProfileType;
@@ -21,11 +21,11 @@ export const Profile = ({ profile ,donations}: ProfileProps) => {
         <div className="flex-1/2">
           <ProfileAbout name={profile?.name} about={profile.about} img={profile.avatarImage} />
           <SocialProfile url={profile.socialMediaURL}/>
-          <ExploreMoreSupport donations={donations}
-          onSeeMoreClick={handleSeeMore}/>
+          {/* <ExploreMoreSupport donations={donations} */}
+          {/* onSeeMoreClick={handleSeeMore}/> */}
         </div>
         <div className="flex-1/2">
-          <ExploreMoreRight name={profile?.name} url={profile.socialMediaURL}/>
+          {/* <ExploreMoreRight name={profile?.name} url={profile.socialMediaURL}/> */}
         </div>
       </div>
     </div>
