@@ -41,9 +41,10 @@ const LoginForm = () => {
       console.log(data.isCreatedProfile);
       
       if (data.isCreatedProfile) {
-        router.push("/home");
+         router.push("/home");
       } else {
-        // router.push("/create-profile");
+        router.push("/create-profile");
+       
       }
     },
   });
