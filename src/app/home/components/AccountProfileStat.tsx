@@ -15,7 +15,7 @@ export const AccountProfileStat = () => {
       try {
         const userId = 11;
         const response = await fetch(
-          `http://localhost:4200/donation/received${userId}`
+          `http://localhost:4200/donation/total${userId}`
         );
         const data = await response.json();
         setModuls(data);
@@ -32,11 +32,11 @@ export const AccountProfileStat = () => {
     <div className="flex flex-col gap-6">
       <div className="border-1 rounded-lg">
         <HomeOneSection />
-        <HomeTwoSection />
+        <HomeTwoSection moduls={moduls} />
       </div>
       <HomeThreeSection />
       <div>
-        <HomeForSection moduls={moduls} />
+        <HomeForSection />
       </div>
     </div>
   );
