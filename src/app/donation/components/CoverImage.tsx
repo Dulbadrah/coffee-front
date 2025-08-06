@@ -1,3 +1,5 @@
+"use client";
+
 import CoverImageUploader from "@/utils/ImageCloudinary";
 
 export default function CoverImage() {

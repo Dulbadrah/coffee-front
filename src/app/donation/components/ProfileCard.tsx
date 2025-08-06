@@ -6,12 +6,17 @@ import { cn } from "@/lib/utils";
 import { DialogDemo } from "./Dialog";
 import { Heart } from "lucide-react";
 import { RecentSupporters } from "./RecentSupporters";
+import { Donation } from "@/lib/types";
 
 const handleSeeMore = () => {
   alert("See more supporters clicked!");
 };
 
-export default function ProfileCard() {
+type ProfileCardProps = {
+  donations?: Donation[];
+};
+
+export default function ProfileCard({ donations }: ProfileCardProps) {
   return (
     <div className="bg-white rounded-xl p-6 shadow">
       <div className="mb-4">
@@ -57,7 +62,10 @@ export default function ProfileCard() {
           </span>
           <span> Be the first one to support Jake</span>
         </div> */}
-        <RecentSupporters onSeeMoreClick={handleSeeMore} />
+        <RecentSupporters
+          donations={donations}
+          onSeeMoreClick={handleSeeMore}
+        />
       </div>
     </div>
   );
