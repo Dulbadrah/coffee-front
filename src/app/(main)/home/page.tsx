@@ -1,11 +1,9 @@
 import { AccountProfileStat } from "@/app/(main)/home/components/AccountProfileStat";
 import { SideBar } from "@/components/SideBar";
 import { getReceivedDonations } from "@/lib/api/donations/get-received-donations";
-import { Suspense } from "react";
 
 const HomePage = async () => {
-  const donations = await getReceivedDonations("koko");
-  console.log(donations)
+  const donations = await getReceivedDonations("tulgaa");
   return (
     <div className="flex justify-between mx-30 p-20">
       <div>
@@ -13,9 +11,7 @@ const HomePage = async () => {
       </div>
       <div >
         {" "}
-        <Suspense fallback={<div>Loading profile stats…</div>}>
-          <AccountProfileStat donations={donations} />
-        </Suspense>
+          <AccountProfileStat donations={donations} />  
       </div>
     </div>
   );

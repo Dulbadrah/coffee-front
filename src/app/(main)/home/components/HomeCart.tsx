@@ -17,17 +17,17 @@ export const HomeCartCaruseil = ({donation}:HomeCart) => {
             ></img>
           </div>
           <div>
-            <div>{donation.name}</div>
-            <div>{donation.email}</div>
+            <div>{donation.donor.username}</div>
+            <div>{donation.donor.email}</div>
           </div>
         </div>
         <div>
           <div>{donation.amount}</div>
-          <div>{donation.date}</div>
+          <div>{donation.donor.createdAt}</div>
         </div>
       </div>
       <div className="max-w-[650]">
-        {donation.specialMessage}
+       comment: {donation.specialMessage}
       </div>
     </div>
   );

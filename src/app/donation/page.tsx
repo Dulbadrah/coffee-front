@@ -4,7 +4,7 @@ import CoverImage from "./components/CoverImage";
 import ProfileCard from "./components/ProfileCard";
 
 const DonationPage = async () => {
-  const donations = await getReceivedDonations("duluu");
+  const donations = await getReceivedDonations("tulgaa");
  
 
   return (
