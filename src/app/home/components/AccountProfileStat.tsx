@@ -1,44 +1,33 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { HomeForSection } from "./HomeForSection";
 import { HomeOneSection } from "./HomeOneSection";
 import { HomeThreeSection } from "./HomeThreeSection";
 import { HomeTwoSection } from "./HomeTwoSection";
+import { da } from "zod/v4/locales";
 
 export const AccountProfileStat = () => {
-  const [user, setUser] = useState([]);
-
-  const getCurrentUserByAccessToken = async (accessToken: string | null) => {
-    try {
-      const response = await fetch(
-        "http://localhost:4200/profile/current-user",
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const [moduls, setModuls] = useState([]);
 
   useEffect(() => {
-    // const cartItems = localStorage.getItem("user");
-    const accessToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTQ0NDc0MDYsInBheWxvYWQiOnsiZW1haWwiOiJkdWxAZ21haWwuY29tIiwidXNlcklkIjozMH0sImlhdCI6MTc1NDQ0MzgwNn0.MElu739zpUxHdbhPcz54VI7DtWpHMnzu3R6xcL2xK8I
- `;
-
-    const getCurrentUser = async () => {
-      const userData = await getCurrentUserByAccessToken(accessToken);
-      console.log("userData", userData);
-      setUser(userData);
+    const fetchData = async () => {
+      try {
+        const userId = 11;
+        const response = await fetch(
+          `http://localhost:4200/donation/received${userId}`
+        );
+        const data = await response.json();
+        setModuls(data);
+        console.log(data);
+      } catch (error) {
+        console.error("Алдаа гарлаа:", error);
+      }
     };
-    getCurrentUser();
+
+    fetchData();
   }, []);
-  console.log(user);
+
   return (
     <div className="flex flex-col gap-6">
       <div className="border-1 rounded-lg">
@@ -47,7 +36,7 @@ export const AccountProfileStat = () => {
       </div>
       <HomeThreeSection />
       <div>
-        <HomeForSection moduls={user} />
+        <HomeForSection moduls={moduls} />
       </div>
     </div>
   );
