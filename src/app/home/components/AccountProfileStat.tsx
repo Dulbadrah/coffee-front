@@ -5,7 +5,6 @@ import { HomeForSection } from "./HomeForSection";
 import { HomeOneSection } from "./HomeOneSection";
 import { HomeThreeSection } from "./HomeThreeSection";
 import { HomeTwoSection } from "./HomeTwoSection";
-import { da } from "zod/v4/locales";
 
 export const AccountProfileStat = () => {
   const [moduls, setModuls] = useState([]);
@@ -19,7 +18,6 @@ export const AccountProfileStat = () => {
         );
         const data = await response.json();
         setModuls(data);
-        console.log(data);
       } catch (error) {
         console.error("Алдаа гарлаа:", error);
       }
