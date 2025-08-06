@@ -4,8 +4,8 @@ import CoverImage from "./components/CoverImage";
 import ProfileCard from "./components/ProfileCard";
 
 const DonationPage = async () => {
-  const donations = await getReceivedDonations("tulgaa");
-  console.log(donations);
+  const donations = await getReceivedDonations("duluu");
+ 
 
   return (
     <div className=" min-h-screen px-4">

@@ -7,8 +7,9 @@ export const getReceivedDonations = async (username: string) => {
     );
 
     const { donations } = await response.json();
-
+    
     return donations as Donation[];
+    
   } catch (error) {
     console.log(error);
   }
