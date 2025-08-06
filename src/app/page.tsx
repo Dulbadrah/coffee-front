@@ -1,5 +1,5 @@
 import { SideBar } from "@/components/SideBar";
-import { AccountProfileStat } from "./home/components/AccountProfileStat";
+import { AccountProfileStat } from "./(main)/home/components/AccountProfileStat";
 
 export default function Home() {
   return (

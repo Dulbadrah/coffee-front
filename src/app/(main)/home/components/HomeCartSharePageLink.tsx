@@ -11,7 +11,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@radix-ui/react-dialog";
-import { AlertDialogHeader } from "../../../components/ui/alert-dialog";
+import { AlertDialogHeader } from "../../../../components/ui/alert-dialog";
 
 export const HomeCartSharePageLink = () => {
   const [user, setUser] = useState<any>();
