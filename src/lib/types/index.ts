@@ -17,6 +17,21 @@ export type Donation = {
   createdAt: string;
   updatedAt: string;
   donor: User;
+  profile: Profile;
+};
+
+export type Profile = {
+  id: number;
+  name: string;
+  about: string;
+  avatarImage: string;
+  socialMediaURL: string;
+  backgroundImage: string;
+  successMessage: string;
+  userId: number;
+  createdAt: string;
+  updatedAt: string;
+  user: User;
 };
 
 export type ProfileType = {
