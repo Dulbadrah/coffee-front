@@ -30,21 +30,21 @@ export const PaymentSection = () => {
     <FormProvider {...methods}>
       <form
         onSubmit={methods.handleSubmit(onSubmit)}
-        className="border p-14 rounded-lg bg-white shadow-sm max-w-lg mx-auto"
+        className="p-6 rounded-lg bg-white shadow-sm  mx-auto"
       >
         <h2 className="text-2xl font-semibold text-gray-900 mb-2">
           How would you like to be paid?
         </h2>
         <p className="text-gray-500 mb-8">Enter location and payment details</p>
 
-        <div className="flex flex-col gap-4" >
+        <div className="flex flex-col gap-4">
           <SelectCountry />
           <UserName />
           <EnterCardNumber />
           <Expires />
 
           <div className="pt-6">
-            <Button type="submit" className=" bg-gray-100 text-gray-700 hover:bg-gray-200 mt-4 text-sm">
+            <Button type="submit" className="w-full">
               Continue
             </Button>
           </div>
