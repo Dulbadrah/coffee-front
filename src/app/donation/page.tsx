@@ -1,33 +1,30 @@
-"use client";
-
+import { Donation } from "@/lib/types";
 import { BuySomeoneCoffee } from "./components/BuySomeoneCoffee";
 import CoverImage from "./components/CoverImage";
 import ProfileCard from "./components/ProfileCard";
-// import { BuySomeoneCoffee } from "../components/BuySomeoneCoffee";
 
-const DonationPage = () => {
-  // const search = useSearchParams();
-  // const name = useSearchParams().get("name");
+const getDonations = async (userId: number) => {
+  try {
+    const response = await fetch(
+      `http://localhost:4200/donation/received/${userId}`
+    );
 
-  //  const [filterMovie, setFilterMovie] = useState<MoviesResponse>();
+    const { donations } = await response.json();
 
-  //  useEffect(() => {
-  //    if (!genreId) return;
-  //    const getFilter = async () => {
-  //      const data = await getGenreFilter(genreId, page);
-  //      console.log("genre", data);
+    return donations as Donation[];
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-  //      setFilterMovie(data);
-  //    };
-  //    getFilter();
-  //  }, [genreId, page]);
-  // jaja
+const DonationPage = async () => {
+  const donations = await getDonations(12);
 
   return (
     <div className=" min-h-screen px-4">
       <CoverImage />
       <div className="max-w-5xl mx-auto -mt-16 relative z-10 p-4 grid md:grid-cols-2 gap-6">
-        <ProfileCard />
+        <ProfileCard donations={donations} />
         <BuySomeoneCoffee />
       </div>
     </div>

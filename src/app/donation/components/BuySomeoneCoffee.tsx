@@ -1,17 +1,11 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-import { QRDialog } from "./ScanQR";
 
-import { object, string } from "yup";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
-import { number } from "zod";
 
-// const donationSchema = object({
-//   selectedAmount: string().required("Та хэдэн ширхэг кофе өгөхөө сонгоно уу"),
-//   socialUrl: string(),
-//   message: string(),
-// });
 const amounts = [1, 2, 5, 10];
 export const BuySomeoneCoffee = () => {
   const [selectedAmount, setSelectedAmount] = useState<number | null>(5);
