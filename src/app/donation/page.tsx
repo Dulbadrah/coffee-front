@@ -1,24 +1,11 @@
-import { Donation } from "@/lib/types";
+import { getReceivedDonations } from "@/lib/api/donations/get-received-donations";
 import { BuySomeoneCoffee } from "./components/BuySomeoneCoffee";
 import CoverImage from "./components/CoverImage";
 import ProfileCard from "./components/ProfileCard";
 
-const getDonations = async (userId: number) => {
-  try {
-    const response = await fetch(
-      `http://localhost:4200/donation/received/${userId}`
-    );
-
-    const { donations } = await response.json();
-
-    return donations as Donation[];
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 const DonationPage = async () => {
-  const donations = await getDonations(12);
+  const donations = await getReceivedDonations("tulgaa");
+  console.log(donations);
 
   return (
     <div className=" min-h-screen px-4">

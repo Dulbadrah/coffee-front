@@ -1,4 +1,4 @@
-import { ProfileType } from "@/lib/types";
+import { Profile } from "@/lib/types";
 
 export const getProfile = async (profileName: string) => {
   try {
@@ -8,7 +8,7 @@ export const getProfile = async (profileName: string) => {
 
     const { profile } = await response.json();
 
-    return profile  as ProfileType;
+    return profile as Profile;
   } catch (error) {
     console.log(error);
   }

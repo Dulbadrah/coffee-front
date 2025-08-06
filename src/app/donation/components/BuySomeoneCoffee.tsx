@@ -12,8 +12,8 @@ export const BuySomeoneCoffee = () => {
   const [socialUrl, setSocialUrl] = useState("");
   const [message, setMessage] = useState("");
 
-  const donorId = 13;
-  const recipientId = 12;
+  const donorId = 21;
+  const recipientId = 22;
   const handleSupport = async () => {
     try {
       if (!selectedAmount) return alert("Та мөнгөний дүнгээ сонгоно уу");
