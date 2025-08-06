@@ -1,8 +1,9 @@
 import { ProfileAbout } from "./ProfileAbout";
-import { ExploreMoreRight } from "./ExploreMoreRight";
-import { Donation, ProfileType } from "@/lib/types";
+// import { ExploreMoreRight } from "./ExploreMoreRight";
+import { Donation, ProfileType} from "@/lib/types";
 import { SocialProfile } from "./SocialProfile";
 import { ExploreMoreSupport } from "./ExploreMoreSupport";
+import { ExploreMoreRight } from "../../exploreMore/components/ExploreMoreRight";
 
 type ProfileProps = {
   profile: ProfileType;
@@ -25,7 +26,7 @@ export const Profile = ({ profile ,donations}: ProfileProps) => {
           onSeeMoreClick={handleSeeMore}/>
         </div>
         <div className="flex-1/2">
-          {/* <ExploreMoreRight name={profile?.name} url={profile.socialMediaURL}/> */}
+          <ExploreMoreRight/>
         </div>
       </div>
     </div>

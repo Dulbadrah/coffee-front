@@ -7,6 +7,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import QRCode from "react-qr-code";
+import { ProfileType } from "@/lib/types";
 
 export const ExploreMoreRight = () => {
   const items = Array.from({ length: 4 });

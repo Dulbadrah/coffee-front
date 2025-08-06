@@ -15,7 +15,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
   return (
     <div className="container mx-auto">
-      <Profile profile={profile}  />
+      <Profile profile={profile} donations={[]}  />
     </div>
   );
 }
