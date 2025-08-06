@@ -18,3 +18,17 @@ export type Donation = {
   updatedAt: string;
   donor: User;
 };
+
+export type Profile = {
+  id: number;
+  name: string;
+  about: string;
+  avatarImage: string;
+  socialMediaURL: string;
+  backgroundImage: string;
+  successMessage: string;
+  userId: number;
+  createdAt: string;
+  updatedAt: string;
+  user: User;
+};
