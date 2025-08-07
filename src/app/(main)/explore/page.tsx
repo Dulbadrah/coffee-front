@@ -1,19 +1,23 @@
 import { SideBar } from "@/components/SideBar";
 import { ExploreHeader } from "./components/ExploreHeader";
-import { ExploreLeft } from "./components/ExploreLeft";
-// import { ExploreMain } from "./components/ExploreMain"
+import { getCreators } from "./_lib/get-creators";
+import { CreateProfileCard } from "./components/CreateProfileCard";
 
-const ExploreHome = () => {
+
+const ExploreHome = async () => {
+  const profiles = await getCreators();
+  console.log("profiles:", profiles);
+
   return (
-    <div className="flex mt-45 ml-[403px]">
+    <div className="flex mx-30 p-20">
       <SideBar />
       <div>
-        <ExploreHeader />
-        {/* <ExploreMain/> */}
-
-        <ExploreLeft />
+        <ExploreHeader/>
+        {profiles?.map((profile) => (
+          <CreateProfileCard key={profile.id} profile={profile} />
+        ))}
       </div>
     </div>
   );
 };
-export default ExploreHome;
+export default ExploreHome

@@ -7,7 +7,7 @@ export const getProfile = async (profileName: string) => {
     );
 
     const { profile } = await response.json();
-
+    
     return profile as Profile;
   } catch (error) {
     console.log(error);

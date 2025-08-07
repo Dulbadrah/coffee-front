@@ -1,16 +1,19 @@
+"use cleint"
+
 import { Button } from "@/components/ui/button";
 import { Donation } from "@/lib/types";
 import { Heart } from "lucide-react";
 
 type RecentSupportersProps = {
   donations?: Donation[];
-  onSeeMoreClick: () => void;
+  onSeeMoreClick?: () => void;
 };
 export const ExploreMoreSupport = ({
   onSeeMoreClick,
   donations,
 }: RecentSupportersProps) => {
   if (!donations)
+    
     return (
       <div className="p-6 border rounded-lg shadow-sm bg-white">
         <h3 className="font-medium mb-4">Recent Supporters</h3>
