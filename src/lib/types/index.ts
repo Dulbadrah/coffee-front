@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type User = {
   id: number;
   email: string;
@@ -8,6 +10,10 @@ export type User = {
   updatedAt: string;
 };
 export type Donation = {
+  successMessege: ReactNode;
+  email: ReactNode;
+  date: string;
+  name: string;
   id: number;
   amount: number;
   specialMessage: string;
@@ -17,6 +23,21 @@ export type Donation = {
   createdAt: string;
   updatedAt: string;
   donor: User;
+  profile: Profile;
+};
+
+export type Profile = {
+  id: number;
+  name: string;
+  about: string;
+  avatarImage: string;
+  socialMediaURL: string;
+  backgroundImage: string;
+  successMessage: string;
+  userId: number;
+  createdAt: string;
+  updatedAt: string;
+  user: User;
 };
 
 export type ProfileType = {

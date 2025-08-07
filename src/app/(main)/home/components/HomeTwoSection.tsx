@@ -7,12 +7,28 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Donation } from "@/lib/types";
+import { useEffect, useState } from "react";
 
-export const HomeTwoSection = ({ moduls }: any) => {
-  const totalEarnings = moduls.reduce(
-    (sum: any, item: { amount: any }) => sum + (item.amount || 0),
-    0
-  );
+export const HomeTwoSection = () => {
+  const [moduls, setModuls] = useState<any>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const userId = 13;
+        const response = await fetch(
+          `http://localhost:4200/donation/total/${userId}`
+        );
+        const data = await response.json();
+        setModuls(data);
+      } catch (error) {
+        console.error("Алдаа гарлаа:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div>
@@ -37,7 +53,12 @@ export const HomeTwoSection = ({ moduls }: any) => {
               </Select>
             </div>
           </div>
-          <div className="text-4xl font-semibold">{totalEarnings}$</div>
+          {moduls && (
+            <div className="text-4xl font-semibold">
+              {moduls.totalEarnings}₮
+            </div>
+          )}
+
         </div>
       </div>
     </div>

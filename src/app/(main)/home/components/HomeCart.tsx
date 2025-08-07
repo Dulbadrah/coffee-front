@@ -1,5 +1,11 @@
-export const HomeCart = ({ modul }: any) => {
-  console.log(modul);
+import { Donation } from "@/lib/types";
+
+ type HomeCart = { 
+  donation:Donation
+}
+
+export const HomeCartCaruseil = ({donation}:HomeCart) => {
+  // console.log("donate",donation);
   return (
     <div className="flex flex-col gap-4 p-6">
       <div className="flex justify-between">
@@ -11,17 +17,17 @@ export const HomeCart = ({ modul }: any) => {
             ></img>
           </div>
           <div>
-            <div>{modul.id}</div>
-            <div>{modul.name}</div>
+            <div>{donation.donor.username}</div>
+            <div>{donation.donor.email}</div>
           </div>
         </div>
         <div>
-          <div>{modul.mount}</div>
-          <div>{modul.date}</div>
+          <div>{donation.amount}</div>
+          <div>{donation.donor.createdAt}</div>
         </div>
       </div>
       <div className="max-w-[650]">
-        {/* comment: nisdkncmolkdsn osd90 son wopvs nosn osn lxm0wjvwe9 b8wb 8 */}
+       comment: {donation.specialMessage}
       </div>
     </div>
   );

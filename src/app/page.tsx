@@ -1,5 +1,4 @@
 import { SideBar } from "@/components/SideBar";
-import { AccountProfileStat } from "./home/components/AccountProfileStat";
 
 export default function Home() {
   return (
@@ -7,9 +6,8 @@ export default function Home() {
       <div>
         <SideBar />
       </div>
-      <div>
-        {" "}
-        <AccountProfileStat />
+      <div className="text-8xl ">
+        side bar darna uuu!
       </div>
     </div>
   );

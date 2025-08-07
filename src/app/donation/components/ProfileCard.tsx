@@ -17,6 +17,7 @@ type ProfileCardProps = {
 };
 
 export default function ProfileCard({ donations }: ProfileCardProps) {
+  console.log("donations", donations);
   return (
     <div className="bg-white rounded-xl p-6 shadow">
       <div className="mb-4">
@@ -40,6 +41,7 @@ export default function ProfileCard({ donations }: ProfileCardProps) {
             <p className="text-sm text-gray-600">
               I'm a typical person who enjoys exploring different things. I also
               make music art as a hobby. Follow me along.
+              {/* {donations?.user?.profile.about} */}
             </p>
           </div>
         </div>
@@ -50,6 +52,7 @@ export default function ProfileCard({ donations }: ProfileCardProps) {
           <h3 className="font-medium mb-1">Social media URL</h3>
           <p className="text-sm text-blue-600">
             https://buymeacoffee.com/spacerulz44
+            {/* {donations.} */}
           </p>
         </div>
       </div>
