@@ -1,9 +1,8 @@
 import { ProfileAbout } from "./ProfileAbout";
-// import { ExploreMoreRight } from "./ExploreMoreRight";
 import { Donation, ProfileType } from "@/lib/types";
 import { SocialProfile } from "./SocialProfile";
+import { ExploreMoreRight } from "./ExploreMoreRight";
 import { ExploreMoreSupport } from "./ExploreMoreSupport";
-import { ExploreMoreRight } from "../../exploreMore/components/ExploreMoreRight";
 
 type ProfileProps = {
   profile: ProfileType;
@@ -11,9 +10,6 @@ type ProfileProps = {
 };
 
 export const ProfileComponent = ({ profile, donations }: ProfileProps) => {
-  const handleSeeMore = () => {
-    console.log("See more clicked!");
-  };
   return (
     <div className="relative">
       <img src="/frame.png" alt="frame" width={"100%"} height="100%" />

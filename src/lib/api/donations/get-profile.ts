@@ -6,7 +6,7 @@ export const getProfile = async (profileName: string) => {
       `http://localhost:4200/profile/view/${profileName}`
     );
     const { profile } = await response.json();
-
+    
     return profile as Profile;
   } catch (error) {
     console.log(error);
