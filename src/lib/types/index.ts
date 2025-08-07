@@ -41,7 +41,7 @@ export type Profile = {
 };
 
 export type ProfileType = {
- id: number;
+  id: number;
   name: string;
   about: string;
   avatarImage: string;
@@ -52,4 +52,4 @@ export type ProfileType = {
   createdAt: string;
   updatedAt: string;
   user: User;
-}
+};
