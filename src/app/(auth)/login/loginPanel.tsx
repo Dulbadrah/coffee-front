@@ -1,33 +1,22 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useFormik } from "formik";
 import { object, string } from "yup";
 import Link from "next/link";
-import axios from 'axios'
-import { useRouter } from 'next/navigation'
+import axios from "axios";
+import { useRouter } from "next/navigation";
 import { LoaderCircle } from "lucide-react";
-
-
+import { UserContext } from "@/providers/UserProvider";
 
 const loginSchema = object({
   email: string().email().required("Email ee bichne uu!"),
   password: string().required("Password oo buglunu uu!"),
 });
 
-type LoginResponse = {
-  success: boolean;
-  accessToken: string;
-  user: {
-    username: string;
-    email: string;
-  };
-  isCreatedProfile: boolean;
-};
-
 const LoginForm = () => {
-
-  const [loading, setLoading] = useState(false)
-  const router = useRouter()
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const { login } = useContext(UserContext);
 
   const formik = useFormik({
     initialValues: {
@@ -35,15 +24,16 @@ const LoginForm = () => {
       password: ``,
     },
     validationSchema: loginSchema,
-    onSubmit: async values => {
-      setLoading(true)
-      const { data } = await axios.post<LoginResponse>('http://localhost:4200/auth/login', values)
-      console.log(data.isCreatedProfile);
-      
-      if (data.isCreatedProfile) {
+    onSubmit: async (values) => {
+      const { email, password } = values;
+
+      // setLoading(true);
+      const data = await login(email, password);
+      console.log(data);
+      if (data?.isCreatedProfile) {
         router.push("/home");
       } else {
-        // router.push("/create-profile");
+        router.push("/create-profile");
       }
     },
   });
@@ -113,7 +103,8 @@ const LoginForm = () => {
             type="submit"
             className="w-full bg-gray-400 text-white py-2 rounded flex justify-center gap-2 items-center"
           >
-            Login {loading && <LoaderCircle size={18} className="animate-spin"/>}
+            Login
+            {/* {loading && <LoaderCircle size={18} className="animate-spin" />} */}
           </button>
         </form>
       </div>

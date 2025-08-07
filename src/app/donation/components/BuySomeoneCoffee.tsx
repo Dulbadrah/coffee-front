@@ -1,10 +1,11 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import axios from "axios";
 import { Button } from "@/components/ui/button";
+import UserContextProvider, { UserContext } from "@/providers/UserProvider";
 
 const amounts = [1, 2, 5, 10];
 export const BuySomeoneCoffee = () => {
@@ -12,8 +13,11 @@ export const BuySomeoneCoffee = () => {
   const [socialUrl, setSocialUrl] = useState("");
   const [message, setMessage] = useState("");
 
-  const donorId = 14;
-  const recipientId = 13;
+  // const donorId = 29;
+  // const recipientId = 30;
+
+  const { user } = useContext(UserContext);
+
   const handleSupport = async () => {
     try {
       if (!selectedAmount) return alert("Та мөнгөний дүнгээ сонгоно уу");
@@ -22,8 +26,8 @@ export const BuySomeoneCoffee = () => {
         amount: selectedAmount,
         specialMessage: message,
         socialURLOrBuyMeACoffee: socialUrl,
-        donorId: Number(donorId),
-        recipientId: Number(recipientId),
+        donorId: user?.profileCurrent?.userId,
+        recipientId: user?.profileCurrent?.userId,
       };
 
       const response = await axios.post(

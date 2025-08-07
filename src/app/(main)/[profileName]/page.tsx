@@ -1,5 +1,5 @@
 import { ProfileComponent } from "./_components/Profile";
-import { getProfile } from "./_lib/get-profile";
+import { getProfile } from "../../../lib/api/donations/get-profile";
 
 type ProfilePageProps = {
   params: Promise<{ profileName: string }>;

@@ -6,7 +6,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import QRCode from "react-qr-code";
+
+import { ProfileType } from "@/lib/types";
+import { QrCode } from "lucide-react";
 
 export const ExploreMoreRight = () => {
   const items = Array.from({ length: 4 });
@@ -55,10 +57,9 @@ export const ExploreMoreRight = () => {
             <DialogHeader>
               <DialogTitle>Edit profile</DialogTitle>
             </DialogHeader>
-            <QRCode
+            <QrCode
               size={256}
               style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-              value={"hhha"}
               viewBox={`0 0 256 256`}
             />
           </DialogContent>
