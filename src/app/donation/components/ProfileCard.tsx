@@ -1,10 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import { DialogDemo } from "./Dialog";
-import { Heart } from "lucide-react";
 import { RecentSupporters } from "./RecentSupporters";
 import { Donation, ProfileType } from "@/lib/types";
 
