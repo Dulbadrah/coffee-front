@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { DialogDemo } from "./Dialog";
 import { Heart } from "lucide-react";
 import { RecentSupporters } from "./RecentSupporters";
-import { Donation } from "@/lib/types";
+import { Donation, ProfileType } from "@/lib/types";
 
 const handleSeeMore = () => {
   alert("See more supporters clicked!");
@@ -14,10 +14,12 @@ const handleSeeMore = () => {
 
 type ProfileCardProps = {
   donations?: Donation[];
+  profile?: ProfileType;
 };
 
-export default function ProfileCard({ donations }: ProfileCardProps) {
-  console.log("donations", donations);
+export default function ProfileCard({ donations, profile }: ProfileCardProps) {
+  // console.log("donations", donations);
+  console.log("profile", profile);
   return (
     <div className="bg-white rounded-xl p-6 shadow">
       <div className="mb-4">
@@ -39,9 +41,9 @@ export default function ProfileCard({ donations }: ProfileCardProps) {
           <div className="mb-4">
             <h3 className="font-medium mb-1">About Jake</h3>
             <p className="text-sm text-gray-600">
-              I'm a typical person who enjoys exploring different things. I also
-              make music art as a hobby. Follow me along.
-              {/* {donations?.user?.profile.about} */}
+              {/* I'm a typical person who enjoys exploring different things. I also
+              make music art as a hobby. Follow me along. */}
+              {profile?.about}
             </p>
           </div>
         </div>
@@ -51,8 +53,8 @@ export default function ProfileCard({ donations }: ProfileCardProps) {
         <div className="p-6 border rounded-lg">
           <h3 className="font-medium mb-1">Social media URL</h3>
           <p className="text-sm text-blue-600">
-            https://buymeacoffee.com/spacerulz44
-            {/* {donations.} */}
+            {/* https://buymeacoffee.com/spacerulz44 */}
+            {profile?.socialMediaURL}
           </p>
         </div>
       </div>
