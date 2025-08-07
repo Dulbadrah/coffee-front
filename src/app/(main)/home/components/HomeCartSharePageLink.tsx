@@ -2,7 +2,7 @@ import { DialogFooter } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Dialog,
   DialogClose,
@@ -12,43 +12,11 @@ import {
   DialogTrigger,
 } from "@radix-ui/react-dialog";
 import { AlertDialogHeader } from "../../../../components/ui/alert-dialog";
+import { UserContext } from "@/providers/UserProvider";
 
 export const HomeCartSharePageLink = () => {
-  const [user, setUser] = useState<any>();
 
-  useEffect(() => {
-    // const data= localStorage.getItem("accessToken");
-    const accessToken =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTQ0ODY0MDgsInBheWxvYWQiOnsiZW1haWwiOiJ0ZXN0NUBnbWFpbC5jb20iLCJ1c2VySWQiOjI0fSwiaWF0IjoxNzU0NDgyODA4fQ.kg9ZN9XWQe7a1JSVSHRglxLJo4qebm1w9YkviUbJfv8";
-
-    if (!accessToken) return;
-
-    const getCurrentUser = async () => {
-      const userData = await getCurrentUserByAccessToken(accessToken);
-
-      setUser(userData);
-      console.log("userData", userData);
-    };
-
-    getCurrentUser();
-  }, []);
-
-  const getCurrentUserByAccessToken = async (accessToken: string) => {
-    try {
-      const response = await fetch(
-        "http://localhost:4200/profile/current-user",
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const {user}=useContext(UserContext)
   return (
     <div>
       <div className="flex justify-between gap-8 p-10">

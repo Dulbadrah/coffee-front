@@ -19,7 +19,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import CoverImageUploaderProfile from "@/utils/imageCloudinaryProfiile";
 import { useRouter } from "next/navigation";
-import { UserContext } from "@/providers/UserProvider";
+
 
 export function CreateProfile() {
   const router = useRouter();
@@ -52,6 +52,8 @@ export function CreateProfile() {
           about: values.about,
           socialMediaURL: values.url,
           backgroundImage: coverImage,
+          avatarImage: "",
+          successMessage: ""
         }
       );
 
