@@ -26,10 +26,10 @@ export const ProfileComponent = ({ profile, donations }: ProfileProps) => {
             img={profile.avatarImage}
           />
           <SocialProfile url={profile.socialMediaURL} />
-          <ExploreMoreSupport
+          {/* <ExploreMoreSupport
             donations={donations}
             onSeeMoreClick={handleSeeMore}
-          />
+          /> */}
         </div>
         <div className="flex-1/2">
           <ExploreMoreRight />
