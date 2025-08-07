@@ -58,7 +58,6 @@ export const HomeTwoSection = () => {
               {moduls.totalEarnings}₮
             </div>
           )}
-
         </div>
       </div>
     </div>

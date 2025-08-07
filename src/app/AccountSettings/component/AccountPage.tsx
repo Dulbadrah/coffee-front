@@ -21,7 +21,7 @@ export default function AccountPage() {
   const [url, setUrl] = useState("https://buymeacoffee.com/baconpancakes1");
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-10 space-y-10">
+    <div className="flex flex-col gap-6">
       <h1 className="text-2xl font-bold">My account</h1>
 
       {/* Personal Info */}

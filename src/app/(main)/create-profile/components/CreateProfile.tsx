@@ -22,13 +22,13 @@ import { useRouter } from "next/navigation";
 
 export function CreateProfile() {
   const router = useRouter();
-  const [coverImage, setCoverImage] = useState("");
+  const [coverImage, setCoverImage] = useState<String>("");
 
   const handleCoverSaveProfile = (imageUrl: string) => {
     setCoverImage(imageUrl);
-    console.log("Cover image saved:", imageUrl);
   };
 
+  console.log("Cover:", coverImage);
   const validationSchema = Yup.object({
     name: Yup.string()
       .min(3, "Name must be at least 3 characters")
@@ -41,7 +41,13 @@ export function CreateProfile() {
 
   const handleSubmit = async (values: any, { setSubmitting }: any) => {
     try {
-      const userId = 13;
+      if (!coverImage) {
+        alert("Please upload a cover image before submitting.");
+        setSubmitting(false);
+        return;
+      }
+
+      const userId = 22;
 
       const response = await axios.post(
         `http://localhost:4200/profile/create-profile/${userId}`,
@@ -50,8 +56,6 @@ export function CreateProfile() {
           about: values.about,
           socialMediaURL: values.url,
           backgroundImage: coverImage,
-          successMessage: "",
-          avatarImage: "",
         }
       );
 
@@ -78,7 +82,6 @@ export function CreateProfile() {
           </DialogDescription>
         </DialogHeader>
 
-        {/* Cover image uploader */}
         <div className="flex flex-col gap-4">
           <CoverImageUploaderProfile onSave={handleCoverSaveProfile} />
         </div>
@@ -146,7 +149,7 @@ export function CreateProfile() {
                   Cancel
                 </Button>
                 <Button type="submit" disabled={isSubmitting || !handleSubmit}>
-                  {isSubmitting ? "Saving..." : "Save Profile"}
+                  {isSubmitting ? "Saving..." : "continue"}
                 </Button>
               </DialogFooter>
             </Form>
@@ -155,7 +158,4 @@ export function CreateProfile() {
       </DialogContent>
     </Dialog>
   );
-}
-function setSearchValue(arg0: string) {
-  throw new Error("Function not implemented.");
 }

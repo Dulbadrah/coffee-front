@@ -1,5 +1,3 @@
-"use client";
-
 import { useRef, useState } from "react";
 import Image from "next/image";
 import { Camera } from "lucide-react";
@@ -67,12 +65,10 @@ export default function CoverImageUploaderProfile({
           src={imageUrl}
           alt="Cover"
           layout="fill"
-          objectFit="cover"
-          className="transition-opacity duration-300"
+          className="object-cover transition-opacity duration-300"
         />
       )}
 
-      {/* if image is selected, show Save/Cancel; otherwise, show Add button */}
       {!imageUrl ? (
         <div className=" w-24 h-24 rounded-full mx-auto border-4 object-cover">
           <div className="flex items-center justify-center h-full">
