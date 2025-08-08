@@ -8,7 +8,7 @@ const ExploreHome = async () => {
   const profiles = await getCreators();
 
   return (
-    <div className="flex mx-30 p-20">
+    <div className="flex container  ml-30 mx-30 p-20 ">
       <SideBar />
       <div>
         <ExploreHeader/>
