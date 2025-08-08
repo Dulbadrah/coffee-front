@@ -3,7 +3,7 @@ import { Donation } from "@/lib/types";
 export const getReceivedDonations = async (username: string) => {
   try {
     const response = await fetch(
-      `http://localhost:4200/donation/received/${username}`
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/donation/received/${username}`
     );
 
     const { donations } = await response.json();

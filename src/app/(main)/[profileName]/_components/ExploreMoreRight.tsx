@@ -32,7 +32,7 @@ export const ExploreMoreRight = () => {
       };
 
       const response = await axios.post(
-        "http://localhost:4200/donation/create-donation",
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/donation/create-donation`,
         donationPayload
       );
       alert("Амжилттай дэмжлээ!");

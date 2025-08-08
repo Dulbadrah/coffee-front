@@ -30,7 +30,7 @@ export default function AccountPage() {
     try {
       setLoading(true);
       const response = await axios.patch(
-        `http://localhost:4200/profile/update/${user?.id}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/profile/update/${user?.id}`,
         {
           name,
           about,

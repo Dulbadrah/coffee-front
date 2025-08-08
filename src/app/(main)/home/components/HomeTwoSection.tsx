@@ -18,7 +18,7 @@ export const HomeTwoSection = () => {
       try {
         const userId = 13;
         const response = await fetch(
-          `http://localhost:4200/donation/total/${userId}`
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/donation/total/${userId}`
         );
         const data = await response.json();
         setModuls(data);
@@ -58,7 +58,6 @@ export const HomeTwoSection = () => {
               {moduls.totalEarnings}₮
             </div>
           )}
-
         </div>
       </div>
     </div>

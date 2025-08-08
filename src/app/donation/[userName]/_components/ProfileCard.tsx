@@ -21,7 +21,7 @@ export default function ProfileCard({ profiles }: ProfileCardProps) {
     const getReceivedDonations = async (username: string) => {
       try {
         const response = await fetch(
-          `http://localhost:4200/donation/received/${profile?.name}`
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/donation/received/${profile?.name}`
         );
 
         const { donations } = await response.json();

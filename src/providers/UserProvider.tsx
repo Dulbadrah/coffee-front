@@ -38,10 +38,13 @@ export default function UserContextProvider({
   const [loading, setLoading] = useState(false);
   console.log(user);
   const login = async (email: string, password: string) => {
-    const response = await axios.post("http://localhost:4200/auth/login", {
-      email: email,
-      password: password,
-    });
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`,
+      {
+        email: email,
+        password: password,
+      }
+    );
     console.log("res", response);
     if (!response) return;
 
@@ -76,11 +79,14 @@ export default function UserContextProvider({
   }, [loading]);
 
   const getCurrentUserByAccessToken = async (accessToken: string) => {
-    const response = await fetch("http://localhost:4200/profile/current-user", {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/profile/current-user`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
     const data = await response.json();
     return data as { user: User; profile: ProfileType | null };
   };

@@ -29,7 +29,7 @@ export default function CoverImage() {
 
     try {
       const response = await axios.put(
-        `http://localhost:4200/profile/${user?.id}/cover`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/profile/${user?.id}/cover`,
         { coverImage: imageUrl },
         {
           headers: {

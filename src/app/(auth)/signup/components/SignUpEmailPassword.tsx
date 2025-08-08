@@ -9,8 +9,8 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
 const signUpEmailSchema = object({
-  email: string().email().required('Email ee bichne uu!'),
-  password: string().required('Password oo buglunu uu!')
+  email: string().email().required("Email ee bichne uu!"),
+  password: string().required("Password oo buglunu uu!"),
 });
 
 type SignUpEmailPasswordProps = {
@@ -28,10 +28,10 @@ const SignUpEmailPassword = ({ userName }: SignUpEmailPasswordProps) => {
       password: ``,
     },
     validationSchema: signUpEmailSchema,
-    onSubmit: async values => {
-      setLoading(true)
-      await signUp(userName, values.email, values.password)
-      router.push('/login')
+    onSubmit: async (values) => {
+      setLoading(true);
+      await signUp(userName, values.email, values.password);
+      router.push("/login");
     },
   });
 
@@ -85,7 +85,6 @@ const SignUpEmailPassword = ({ userName }: SignUpEmailPasswordProps) => {
             />
             {errors.password && (
               <div className="flex gap-2 items-center">
-                
                 <img
                   className="h-[11.67px] w-[11.67px]"
                   src="/img/XVector.png"
@@ -113,7 +112,7 @@ export default SignUpEmailPassword;
 
 const signUp = async (username: string, email: string, password: string) => {
   try {
-    await axios.post("http://localhost:4200/auth/sign-up", {
+    await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/sign-up`, {
       username,
       email,
       password,
