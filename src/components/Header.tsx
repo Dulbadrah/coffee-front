@@ -18,6 +18,7 @@ import { usePathname } from "next/navigation";
 
 export const Header = () => {
   const { user, logout } = useContext(UserContext);
+  const { profile } = useContext(UserContext);
   const pathName = usePathname();
 
   if (pathName === "/login" || pathName === "/signup") return null;
@@ -34,9 +35,9 @@ export const Header = () => {
           <div className="pt-1.5">Buy Me Coffee</div>
         </div>
         <div className="flex gap-6">
-          <img src={user?.avatarImage} className="w-[40px] h-[40px]"></img>
+          <img src={profile?.avatarImage} className="w-[40px] h-[40px]"></img>
 
-          <div className="pt-1.5">{user?.name}</div>
+          <div className="pt-1.5">{profile?.name}</div>
           <div>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>

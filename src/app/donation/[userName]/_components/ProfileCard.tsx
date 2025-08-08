@@ -7,20 +7,21 @@ import { Donation, ProfileType } from "@/lib/types";
 import { UserContext } from "@/providers/UserProvider";
 
 type ProfileCardProps = {
-  profile?: ProfileType;
+  profiles?: ProfileType;
 };
 
-export default function ProfileCard({ profile }: ProfileCardProps) {
+export default function ProfileCard({ profiles }: ProfileCardProps) {
   const [donations, setDonations] = useState<Donation[]>([]);
 
-  const { user } = useContext(UserContext);
-  console.log(user?.user.username);
+  // const { user } = useContext(UserContext);
+  const { profile } = useContext(UserContext);
+
   useEffect(() => {
-    if (!user?.name) return;
+    if (!profile?.name) return;
     const getReceivedDonations = async (username: string) => {
       try {
         const response = await fetch(
-          `http://localhost:4200/donation/received/${user?.user?.username}`
+          `http://localhost:4200/donation/received/${profile?.name}`
         );
 
         const { donations } = await response.json();
@@ -31,8 +32,8 @@ export default function ProfileCard({ profile }: ProfileCardProps) {
       }
     };
 
-    getReceivedDonations(user?.name);
-  }, [user?.name]);
+    getReceivedDonations(profile?.name);
+  }, [profile?.name]);
 
   return (
     <div className="bg-white rounded-xl p-6 shadow">
@@ -40,12 +41,12 @@ export default function ProfileCard({ profile }: ProfileCardProps) {
         <div className="p-6 border rounded-lg">
           <div className="flex items-center gap-4 mb-4">
             <img
-              src="https://i.pravatar.cc/100"
+              src={profile?.avatarImage}
               alt="Profile"
               className="w-14 h-14 rounded-full"
             />
             <div className="flex-1">
-              <h2 className="text-xl font-semibold">{user?.name}</h2>
+              <h2 className="text-xl font-semibold">{profile?.name}</h2>
             </div>
 
             <DialogDemo />
@@ -54,7 +55,7 @@ export default function ProfileCard({ profile }: ProfileCardProps) {
           <div className="border mt-6 mb-6"></div>
           <div className="mb-4">
             <h3 className="font-medium mb-1">About {profile?.name}</h3>
-            <p className="text-sm text-gray-600">{user?.about}</p>
+            <p className="text-sm text-gray-600">{profile?.about}</p>
           </div>
         </div>
       </div>
@@ -63,7 +64,7 @@ export default function ProfileCard({ profile }: ProfileCardProps) {
         <div className="p-6 border rounded-lg">
           <h3 className="font-medium mb-1">Social media URL</h3>
           <p className="text-sm text-blue-600 break-all">
-            {user?.socialMediaURL}
+            {profile?.socialMediaURL}
           </p>
         </div>
       </div>

@@ -3,14 +3,17 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
+import { useContext } from "react";
+import { UserContext } from "@/providers/UserProvider";
 
 export const HomeButtons = () => {
   const pathname = usePathname();
+  const { profile } = useContext(UserContext);
 
   const links = [
     { href: "/home", label: "Home" },
     { href: "/explore", label: "Explore" },
-    { href: "/donation", label: "View-page" },
+    { href: `/donation/${profile?.name}`, label: "View-page" },
     { href: "/AccountSettings", label: "Account-Settings" },
   ];
 

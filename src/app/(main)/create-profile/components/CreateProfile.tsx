@@ -44,7 +44,7 @@ export function CreateProfile() {
   const handleSubmit = async (values: any, { setSubmitting }: any) => {
     try {
       const response = await axios.post(
-        `http://localhost:4200/profile/create-profile/${user?.userId}`,
+        `http://localhost:4200/profile/create-profile/${user?.id}`,
         {
           name: values.name,
           about: values.about,

@@ -14,6 +14,9 @@ export const BuySomeoneCoffee = () => {
   const [message, setMessage] = useState("");
 
   const { user } = useContext(UserContext);
+  console.log(user);
+  const { profile } = useContext(UserContext);
+  console.log(profile);
 
   const handleSupport = async () => {
     try {
@@ -23,8 +26,8 @@ export const BuySomeoneCoffee = () => {
         amount: selectedAmount,
         specialMessage: message,
         socialURLOrBuyMeACoffee: socialUrl,
-        donorId: user?.userId,
-        recipientId: user?.userId,
+        donorId: profile?.userId,
+        recipientId: profile?.id,
       };
 
       const response = await axios.post(
