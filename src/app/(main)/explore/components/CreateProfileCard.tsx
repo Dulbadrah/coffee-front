@@ -9,7 +9,7 @@ type CreateProfileCardProps = {
 export const CreateProfileCard = ({ profile }: CreateProfileCardProps) => {
   const { avatarImage, name, about, socialMediaURL } = profile;
   return (
-    <div className="border-[1] w-[1690px] rounded-sm  flex flex-col mt-6 pb-4">
+    <div className="border-[1] rounded-sm w-full flex flex-col mt-6 pb-4">
       <div className="flex justify-between mt-6">
         <div className="ml-5">
           <img src={avatarImage || "/Profile.png"} />

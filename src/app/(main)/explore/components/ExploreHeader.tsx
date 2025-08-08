@@ -5,7 +5,7 @@ export const ExploreHeader = () => {
     <div className="text-black">
       <h2 className="mb-4 text-xl font-semibold">Explore creators</h2>
       
-      <div className="relative w-full max-w-md">
+      <div className="relative w-full mx-auto">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" size={18} />
 
         <input

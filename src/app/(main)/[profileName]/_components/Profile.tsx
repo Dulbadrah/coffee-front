@@ -4,16 +4,15 @@ import { ProfileAbout } from "./ProfileAbout";
 import { Donation, ProfileType } from "@/lib/types";
 import { SocialProfile } from "./SocialProfile";
 import { ExploreMoreRight } from "./ExploreMoreRight";
+import { RecentSupporters } from "@/app/donation/[userName]/_components/RecentSupporters";
 
 type ProfileProps = {
   profile: ProfileType;
-  donations: Donation[];
 
 };
 
 export const ProfileComponent = ({
   profile,
-  donations
 }: ProfileProps) => {
   return (
     <div className="relative">
@@ -27,6 +26,7 @@ export const ProfileComponent = ({
             img={profile.avatarImage}
           />
           <SocialProfile url={profile.socialMediaURL} />
+          <RecentSupporters/>
         </div>
         <div className="flex-1/2">
           <ExploreMoreRight />

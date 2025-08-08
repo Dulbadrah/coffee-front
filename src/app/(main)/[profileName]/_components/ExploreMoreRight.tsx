@@ -6,16 +6,12 @@ import { useContext, useState } from "react";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 import UserContextProvider, { UserContext } from "@/providers/UserProvider";
-import { QRDialog } from "@/app/donation/components/ScanQR";
 
 const amounts = [1, 2, 5, 10];
 export const ExploreMoreRight = () => {
   const [selectedAmount, setSelectedAmount] = useState<number | null>(5);
   const [socialUrl, setSocialUrl] = useState("");
   const [message, setMessage] = useState("");
-
-  // const donorId = 29;
-  // const recipientId = 30;
 
   const { user } = useContext(UserContext);
 
@@ -27,8 +23,8 @@ export const ExploreMoreRight = () => {
         amount: selectedAmount,
         specialMessage: message,
         socialURLOrBuyMeACoffee: socialUrl,
-        donorId: user?.profileCurrent?.id,
-        recipientId: user?.profileCurrent?.userId,
+        donorId: user?.id,
+        recipientId: user?.userId,
       };
 
       const response = await axios.post(
