@@ -2,7 +2,7 @@
 
 import { useContext, useState } from "react";
 import axios from "axios";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
 
 import {
@@ -20,6 +20,12 @@ import { Label } from "@/components/ui/label";
 import CoverImageUploaderProfile from "@/utils/imageCloudinaryProfiile";
 import { useRouter } from "next/navigation";
 import { UserContext } from "@/providers/UserProvider";
+
+type CreateProfileValues = {
+  name: string;
+  about: string;
+  url: string;
+};
 
 export function CreateProfile() {
   const router = useRouter();
@@ -41,7 +47,7 @@ export function CreateProfile() {
     url: Yup.string().url("Invalid URL").min(3).required("Required"),
   });
 
-  const handleSubmit = async (values: any, { setSubmitting }: any) => {
+  const handleSubmit = async (values: CreateProfileValues, { setSubmitting }: FormikHelpers<CreateProfileValues>) => {
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/profile/create-profile/${user?.id}`,

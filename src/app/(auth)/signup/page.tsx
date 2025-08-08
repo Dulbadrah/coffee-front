@@ -13,6 +13,7 @@ const Sign = () => {
   }
 
   const StepComponent = [SignUpForm, SignUpEmailPassword][currentStep];
+  
   return (
     <div className="flex min-h-screen">
       <LeftPanelSign />

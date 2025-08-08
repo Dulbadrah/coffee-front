@@ -10,7 +10,7 @@ const LeftPanel = () => {
         </div>
         <h1 className="text-2xl font-bold mb-2">Fund your creative work</h1>
         <p className="text-sm text-black/70 max-w-xs">
-          Accept support. Start a membership. Setup a shop. It's easier than you think.
+          Accept support. Start a membership. Setup a shop. It&apos;s easier than you think.
         </p>
       </div>
     </div>
