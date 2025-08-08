@@ -27,14 +27,18 @@ const LoginForm = () => {
     onSubmit: async (values) => {
       const { email, password } = values;
 
-      // setLoading(true);
-      const data = await login(email, password);
-      console.log(data);
-      if (data?.isCreatedProfile) {
-        router.push("/home");
-      } else {
-        router.push("/create-profile");
+      try {
+        const data = await login(email, password);
+
+        if (data?.isCreatedProfile) {
+          router.push("/home");
+        } else {
+          router.push("/create-profile");
+        }
+      } catch (error) {
+        alert('Email, password shalgaarai')
       }
+
     },
   });
 

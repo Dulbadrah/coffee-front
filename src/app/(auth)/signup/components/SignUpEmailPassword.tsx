@@ -63,12 +63,11 @@ const SignUpEmailPassword = ({ userName }: SignUpEmailPasswordProps) => {
             />
             {errors.email && (
               <div className="flex items-center gap-1">
-                {" "}
                 <img
                   className="h-[11.67px] w-[11.67px]"
                   src="/img/XVector.png"
                   alt=""
-                />{" "}
+                />
                 <p className="text-[13px] text-red-500">{errors.email}</p>
               </div>
             )}
@@ -86,12 +85,12 @@ const SignUpEmailPassword = ({ userName }: SignUpEmailPasswordProps) => {
             />
             {errors.password && (
               <div className="flex gap-2 items-center">
-                {" "}
+                
                 <img
                   className="h-[11.67px] w-[11.67px]"
                   src="/img/XVector.png"
                   alt=""
-                />{" "}
+                />
                 <p className="text-[13px] text-red-500">{errors.password}</p>
               </div>
             )}
@@ -101,7 +100,7 @@ const SignUpEmailPassword = ({ userName }: SignUpEmailPasswordProps) => {
             className="w-full bg-gray-400 text-white py-2 rounded flex justify-center gap-2 items-center"
             disabled={loading}
           >
-            Sign up{" "}
+            Sign up
             {loading && <LoaderCircle size={18} className="animate-spin" />}
           </Button>
         </form>

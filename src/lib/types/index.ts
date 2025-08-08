@@ -53,3 +53,18 @@ export type ProfileType = {
   updatedAt: string;
   user: User;
 };
+
+export type CurrentPofile = {
+  id: number;
+  name: string;
+  about: string;
+  avatarImage: string;
+  socialMediaURL: string;
+  backgroundImage: string;
+  successMessage: string;
+  userId: number;
+  createdAt: string;
+  updatedAt: string;
+  user: User
+};
+

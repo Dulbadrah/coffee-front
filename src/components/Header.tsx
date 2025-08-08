@@ -1,16 +1,25 @@
-import { Coffee } from "lucide-react";
+'use client'
 
+import { Coffee } from "lucide-react";
+import { Button } from "@/components/ui/button"
 import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import Link from "next/link";
+import { UserContext } from "@/providers/UserProvider";
+import { useContext } from "react";
+
 export const Header = () => {
+  const { user, logout } = useContext(UserContext)
+
+
+
   return (
     <div>
       <div className="flex justify-between px-10 py-4">
@@ -23,21 +32,23 @@ export const Header = () => {
           <div className="pt-1.5">Buy Me Coffee</div>
         </div>
         <div className="flex gap-6">
-          <div className="pt-1.5">
-            <img src={"image"} className="w-[40px] h-[40px]"></img>
-          </div>
-          <div className="pt-1.5">Jake</div>
+
+          {/* <img src={user?.avatarImage} className="w-[40px] h-[40px]"></img> */}
+
+          <div className="pt-1.5">{user?.name}</div>
           <div>
-            <Select>
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectItem value="apple">Logout</SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline">Profile</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56">
+                <DropdownMenuSeparator />
+                <DropdownMenuRadioGroup>
+                  <DropdownMenuRadioItem value="" onClick={logout}>logout</DropdownMenuRadioItem>
+                  
+                </DropdownMenuRadioGroup>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </div>
