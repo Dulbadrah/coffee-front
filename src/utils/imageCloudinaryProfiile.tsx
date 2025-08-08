@@ -15,11 +15,6 @@ export default function CoverImageUploaderProfile({
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const coverUrl = process.env.NEXT_PUBLIC_CLOUDINARY_IMAGE || "";
-  const handleSave = () => {
-    if (imageUrl) {
-      onSave(imageUrl);
-    }
-  };
 
   const handleCancel = () => {
     setImageUrl(null);
@@ -39,18 +34,15 @@ export default function CoverImageUploaderProfile({
 
     setLoading(true);
     try {
-      const res = await fetch(
-        coverUrl,
-        // user iin cover image ees zurgiig solih
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const res = await fetch(coverUrl, {
+        method: "POST",
+        body: formData,
+      });
       const data = await res.json();
-
+      console.log(data.secure_url);
       if (data.secure_url) {
         setImageUrl(data.secure_url);
+        onSave(data.secure_url);
       }
     } catch (error) {
       console.error("Upload error:", error);
@@ -72,7 +64,6 @@ export default function CoverImageUploaderProfile({
         />
       )}
 
-      {/* if image is selected, show Save/Cancel; otherwise, show Add button */}
       {!imageUrl ? (
         <div className=" w-24 h-24 rounded-full mx-auto border-4 object-cover">
           <div className="flex items-center justify-center h-full">
@@ -82,20 +73,13 @@ export default function CoverImageUploaderProfile({
           </div>
         </div>
       ) : (
-        <div className="absolute top-4 right-4 flex gap-2">
-          <button
-            onClick={handleSave}
-            className="bg-black text-white px-3 py-1 text-sm rounded hover:bg-gray-900"
-          >
-            Save Changes
-          </button>
-          <button
-            onClick={handleCancel}
-            className="bg-white text-gray-700 border border-gray-300 px-3 py-1 text-sm rounded hover:bg-gray-100"
-          >
-            Cancel
-          </button>
-        </div>
+        <Image
+          src={imageUrl}
+          alt="Cover"
+          layout="fill"
+          objectFit="cover"
+          className="transition-opacity duration-300"
+        />
       )}
 
       {/* hidden file input */}
