@@ -19,15 +19,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import CoverImageUploaderProfile from "@/utils/imageCloudinaryProfiile";
 import { useRouter } from "next/navigation";
-
+import { UserContext } from "@/providers/UserProvider";
 
 export function CreateProfile() {
   const router = useRouter();
   const [coverImage, setCoverImage] = useState("");
+  const { user } = useContext(UserContext);
 
-  const user = localStorage.getItem("user");
-  if (!user) return;
-  const userId = JSON.parse(user);
   const handleCoverSaveProfile = (imageUrl: string) => {
     setCoverImage(imageUrl);
     console.log("Cover image saved:", imageUrl);
@@ -44,16 +42,17 @@ export function CreateProfile() {
   });
 
   const handleSubmit = async (values: any, { setSubmitting }: any) => {
+    console.log(user.profileCurrent.userId);
     try {
       const response = await axios.post(
-        `http://localhost:4200/profile/create-profile/${userId.user.userId}`,
+        `http://localhost:4200/profile/create-profile/${user.profileCurrent.userId}`,
         {
           name: values.name,
           about: values.about,
           socialMediaURL: values.url,
-          backgroundImage: coverImage,
-          avatarImage: "",
-          successMessage: ""
+          backgroundImage: "",
+          avatarImage: coverImage,
+          successMessage: "",
         }
       );
 
@@ -80,7 +79,6 @@ export function CreateProfile() {
           </DialogDescription>
         </DialogHeader>
 
-        {/* Cover image uploader */}
         <div className="flex flex-col gap-4">
           <CoverImageUploaderProfile onSave={handleCoverSaveProfile} />
         </div>
