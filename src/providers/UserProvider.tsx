@@ -1,26 +1,25 @@
 "use client";
 
-import { ProfileType, User } from "@/lib/types";
+import { CurrentPofile } from "@/lib/types";
 import axios, { AxiosResponse } from "axios";
-import { error } from "console";
+import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 
 type LoginResponse = {
   success: boolean;
   accessToken: string;
-  user: {
-    username: string;
-    email: string;
-  };
+  user: CurrentPofile;
   isCreatedProfile: boolean;
 };
 
 type UserContextType = {
-  user: any;
+  user: CurrentPofile | null
+  loading: boolean
   login: (
     email: string,
     password: string
   ) => Promise<AxiosResponse<LoginResponse> | any>;
+  logout: () => void
 };
 
 export const UserContext = createContext<UserContextType>(
@@ -32,22 +31,24 @@ export default function UserContextProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [user, setUser] = useState<any>();
+  const router = useRouter()
+  const [user, setUser] = useState<CurrentPofile | null>(null);
+  const [loading, setLoading] = useState(false)
 
   const login = async (email: string, password: string) => {
-    try {
-      const response = await axios.post("http://localhost:4200/auth/login", {
-        email: email,
-        password: password,
-      });
 
-      localStorage.setItem("user", JSON.stringify(response.data));
-      localStorage.setItem("accessToken", response.data.accessToken);
+    const response = await axios.post("http://localhost:4200/auth/login", {
+      email: email,
+      password: password,
+    });
 
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
+    if (!response) return
+
+    localStorage.setItem("user", JSON.stringify(response.data));
+    localStorage.setItem("accessToken", response.data.accessToken);
+
+    return response.data;
+
   };
 
   useEffect(() => {
@@ -57,34 +58,42 @@ export default function UserContextProvider({
     if (!accessToken) return;
 
     const getCurrentUser = async () => {
-      const userData = await getCurrentUserByAccessToken(accessToken);
-
-      setUser(userData);
-      console.log("userData", userData);
+      try {
+        setLoading(true)
+        const { profileCurrent } = await getCurrentUserByAccessToken(accessToken);
+        setUser(profileCurrent);
+      } catch (error) {
+        console.log(error)
+      }
     };
 
+    setLoading(false)
+
     getCurrentUser();
-  }, []);
+  }, [loading]);
 
   const getCurrentUserByAccessToken = async (accessToken: string) => {
-    try {
-      const response = await fetch(
-        "http://localhost:4200/profile/current-user",
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
+    const response = await fetch(
+      "http://localhost:4200/profile/current-user",
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    const data = await response.json();
+    return data as { profileCurrent: CurrentPofile };
   };
 
+  const logout = () => {
+    setUser(null)
+    localStorage.clear()
+    router.push('/login')
+  }
+
+
   return (
-    <UserContext.Provider value={{ user, login }}>
+    <UserContext.Provider value={{ user, login, loading, logout }}>
       {children}
     </UserContext.Provider>
   );
