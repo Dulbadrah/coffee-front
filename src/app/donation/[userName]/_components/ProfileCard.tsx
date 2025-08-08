@@ -20,7 +20,7 @@ export default function ProfileCard({ profile }: ProfileCardProps) {
     const getReceivedDonations = async (username: string) => {
       try {
         const response = await fetch(
-          `http://localhost:4200/donation/received/${user?.profileCurrent?.user.username}`
+          `http://localhost:4200/donation/received/${user?.profileCurrent?.user?.username}`
         );
 
         const { donations } = await response.json();
