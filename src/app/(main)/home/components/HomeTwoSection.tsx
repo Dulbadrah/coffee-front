@@ -16,7 +16,7 @@ export const HomeTwoSection = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userId = 13;
+        const userId = 14;
         const response = await fetch(
           `http://localhost:4200/donation/total/${userId}`
         );
@@ -58,7 +58,6 @@ export const HomeTwoSection = () => {
               {moduls.totalEarnings}₮
             </div>
           )}
-
         </div>
       </div>
     </div>

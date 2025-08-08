@@ -15,8 +15,7 @@ import { AlertDialogHeader } from "../../../../components/ui/alert-dialog";
 import { UserContext } from "@/providers/UserProvider";
 
 export const HomeCartSharePageLink = () => {
-
-  const {user}=useContext(UserContext)
+  const { user } = useContext(UserContext);
   return (
     <div>
       <div className="flex justify-between gap-8 p-10">
