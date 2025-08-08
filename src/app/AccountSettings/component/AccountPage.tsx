@@ -15,13 +15,13 @@ export default function AccountPage() {
   const { user } = useContext(UserContext);
   console.log(user);
 
-  const [name, setName] = useState(user?.profileCurrent?.name || "");
-  const [about, setAbout] = useState(user?.profileCurrent?.about || "");
-  const [url, setUrl] = useState(user?.profileCurrent?.socialMediaURL || "");
+  const [name, setName] = useState(user?.name || "");
+  const [about, setAbout] = useState(user?.about || "");
+  const [url, setUrl] = useState(user?.socialMediaURL || "");
   const [loading, setLoading] = useState(false);
 
   const handleUpdate = async () => {
-    if (!user?.profileCurrent?.userId) {
+    if (!user?.userId) {
       console.error("User ID not found");
       return;
     }
@@ -29,7 +29,7 @@ export default function AccountPage() {
     try {
       setLoading(true);
       const response = await axios.patch(
-        `http://localhost:4200/profile/update/${user.profileCurrent.id}`,
+        `http://localhost:4200/profile/update/${user?.id}`,
         {
           name,
           about,
@@ -59,9 +59,7 @@ export default function AccountPage() {
         <div className="flex flex-col items-center gap-2">
           <div className="relative">
             <Avatar className="w-24 h-24">
-              <AvatarImage
-                src={user?.profileCurrent?.avatarUrl || "/avatar.jpg"}
-              />
+              <AvatarImage src={user?.avatarImage || "/avatar.jpg"} />
               <AvatarFallback>
                 {name ? name.charAt(0).toUpperCase() : "?"}
               </AvatarFallback>

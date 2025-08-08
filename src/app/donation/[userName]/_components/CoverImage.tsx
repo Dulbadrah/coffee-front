@@ -22,14 +22,14 @@ export default function CoverImage() {
   const { user } = useContext(UserContext);
 
   const handleCoverSave = async (imageUrl: string) => {
-    if (!user?.profileCurrent?.id) {
+    if (!user?.id) {
       alert("Профайл ID олдсонгүй");
       return;
     }
 
     try {
       const response = await axios.put(
-        `http://localhost:4200/profile/${user.profileCurrent.id}/cover`,
+        `http://localhost:4200/profile/${user?.id}/cover`,
         { coverImage: imageUrl },
         {
           headers: {

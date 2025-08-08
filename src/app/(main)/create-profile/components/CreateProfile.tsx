@@ -25,7 +25,7 @@ export function CreateProfile() {
   const router = useRouter();
   const [coverImage, setCoverImage] = useState("");
   const { user } = useContext(UserContext);
-
+  console.log(user);
   const handleCoverSaveProfile = (imageUrl: string) => {
     setCoverImage(imageUrl);
     console.log("Cover image saved:", imageUrl);
@@ -42,10 +42,9 @@ export function CreateProfile() {
   });
 
   const handleSubmit = async (values: any, { setSubmitting }: any) => {
-    console.log(user.profileCurrent.userId);
     try {
       const response = await axios.post(
-        `http://localhost:4200/profile/create-profile/${user.profileCurrent.userId}`,
+        `http://localhost:4200/profile/create-profile/${user?.userId}`,
         {
           name: values.name,
           about: values.about,

@@ -1,15 +1,20 @@
+"use client";
+
 import { ProfileAbout } from "./ProfileAbout";
 import { Donation, ProfileType } from "@/lib/types";
 import { SocialProfile } from "./SocialProfile";
 import { ExploreMoreRight } from "./ExploreMoreRight";
-import { ExploreMoreSupport } from "./ExploreMoreSupport";
 
 type ProfileProps = {
   profile: ProfileType;
   donations: Donation[];
+
 };
 
-export const ProfileComponent = ({ profile, donations }: ProfileProps) => {
+export const ProfileComponent = ({
+  profile,
+  donations
+}: ProfileProps) => {
   return (
     <div className="relative">
       <img src="/frame.png" alt="frame" width={"100%"} height="100%" />
@@ -22,10 +27,6 @@ export const ProfileComponent = ({ profile, donations }: ProfileProps) => {
             img={profile.avatarImage}
           />
           <SocialProfile url={profile.socialMediaURL} />
-          {/* <ExploreMoreSupport
-            donations={donations}
-            onSeeMoreClick={handleSeeMore}
-          /> */}
         </div>
         <div className="flex-1/2">
           <ExploreMoreRight />
