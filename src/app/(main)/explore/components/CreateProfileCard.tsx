@@ -16,7 +16,7 @@ export const CreateProfileCard = ({ profile }: CreateProfileCardProps) => {
           <h2 className="text-lg font-semibold">{name}</h2>
         </div>
         <div>
-        <Link href="/exploreMore">
+        <Link href={profile.name}>
         <Button className="mr-5">View profile</Button>
         </Link>
         </div>

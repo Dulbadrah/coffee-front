@@ -5,6 +5,7 @@ export const getCreators = async () => {
     const response = await fetch(`http://localhost:4200/profile/explore`);
 
     const { profiles } = await response.json();
+    
 
     return profiles as ProfileType[];
   } catch (error) {
