@@ -14,11 +14,15 @@ import {
 import Link from "next/link";
 import { UserContext } from "@/providers/UserProvider";
 import { useContext } from "react";
+import { usePathname } from 'next/navigation'
+
+
 
 export const Header = () => {
   const { user, logout } = useContext(UserContext)
+  const pathName = usePathname()
 
-
+  if(pathName === '/login' || pathName === '/signup') return null
 
   return (
     <div>
