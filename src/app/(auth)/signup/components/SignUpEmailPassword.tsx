@@ -31,7 +31,7 @@ const SignUpEmailPassword = ({ userName }: SignUpEmailPasswordProps) => {
     onSubmit: async values => {
       setLoading(true)
       await signUp(userName, values.email, values.password)
-      router.push('/create-profile')
+      router.push('/login')
     },
   });
 
