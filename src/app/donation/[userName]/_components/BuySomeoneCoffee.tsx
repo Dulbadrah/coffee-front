@@ -23,8 +23,8 @@ export const BuySomeoneCoffee = () => {
         amount: selectedAmount,
         specialMessage: message,
         socialURLOrBuyMeACoffee: socialUrl,
-        donorId: user?.profileCurrent?.userId,
-        recipientId: user?.profileCurrent?.userId,
+        donorId: user?.userId,
+        recipientId: user?.userId,
       };
 
       const response = await axios.post(
@@ -104,4 +104,3 @@ export const BuySomeoneCoffee = () => {
     </div>
   );
 };
-//webhook tusad ni api

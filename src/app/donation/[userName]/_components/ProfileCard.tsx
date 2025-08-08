@@ -14,13 +14,13 @@ export default function ProfileCard({ profile }: ProfileCardProps) {
   const [donations, setDonations] = useState<Donation[]>([]);
 
   const { user } = useContext(UserContext);
-  console.log(user?.profileCurrent?.user.username);
+  console.log(user?.user.username);
   useEffect(() => {
-    if (!user?.profileCurrent?.name) return;
+    if (!user?.name) return;
     const getReceivedDonations = async (username: string) => {
       try {
         const response = await fetch(
-          `http://localhost:4200/donation/received/${user?.profileCurrent?.user?.username}`
+          `http://localhost:4200/donation/received/${user?.user?.username}`
         );
 
         const { donations } = await response.json();
@@ -31,8 +31,8 @@ export default function ProfileCard({ profile }: ProfileCardProps) {
       }
     };
 
-    getReceivedDonations(user?.profileCurrent?.name);
-  }, [user?.profileCurrent?.name]);
+    getReceivedDonations(user?.name);
+  }, [user?.name]);
 
   return (
     <div className="bg-white rounded-xl p-6 shadow">
@@ -45,9 +45,7 @@ export default function ProfileCard({ profile }: ProfileCardProps) {
               className="w-14 h-14 rounded-full"
             />
             <div className="flex-1">
-              <h2 className="text-xl font-semibold">
-                {user?.profileCurrent?.name}
-              </h2>
+              <h2 className="text-xl font-semibold">{user?.name}</h2>
             </div>
 
             <DialogDemo />
@@ -56,9 +54,7 @@ export default function ProfileCard({ profile }: ProfileCardProps) {
           <div className="border mt-6 mb-6"></div>
           <div className="mb-4">
             <h3 className="font-medium mb-1">About {profile?.name}</h3>
-            <p className="text-sm text-gray-600">
-              {user?.profileCurrent?.about}
-            </p>
+            <p className="text-sm text-gray-600">{user?.about}</p>
           </div>
         </div>
       </div>
@@ -67,7 +63,7 @@ export default function ProfileCard({ profile }: ProfileCardProps) {
         <div className="p-6 border rounded-lg">
           <h3 className="font-medium mb-1">Social media URL</h3>
           <p className="text-sm text-blue-600 break-all">
-            {user?.profileCurrent?.socialMediaURL}
+            {user?.socialMediaURL}
           </p>
         </div>
       </div>
