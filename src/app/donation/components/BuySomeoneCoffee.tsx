@@ -18,23 +18,29 @@ export const BuySomeoneCoffee = () => {
 
   const { user } = useContext(UserContext);
 
+  if (!user) {
+    return <div>Түр хүлээнэ үү...</div>;
+  }
+
   const handleSupport = async () => {
+    if (!selectedAmount) return alert("Та мөнгөний дүнгээ сонгоно уу");
+    if (!user?.profileCurrent?.id || !user?.profileCurrent?.userId) {
+      return alert("Профайл мэдээлэл олдсонгүй");
+    }
+
+    const donationPayload = {
+      amount: selectedAmount,
+      specialMessage: message,
+      socialURLOrBuyMeACoffee: socialUrl,
+      donorId: user.profileCurrent.id,
+      recipientId: user.profileCurrent.userId,
+    };
+
     try {
-      if (!selectedAmount) return alert("Та мөнгөний дүнгээ сонгоно уу");
-
-      const donationPayload = {
-        amount: selectedAmount,
-        specialMessage: message,
-        socialURLOrBuyMeACoffee: socialUrl,
-        donorId: user?.profileCurrent?.userId,
-        recipientId: user?.profileCurrent?.userId,
-      };
-
       const response = await axios.post(
         "http://localhost:4200/donation/create-donation",
         donationPayload
       );
-
       console.log("Donation success:", response.data);
       alert("Амжилттай дэмжлээ!");
     } catch (error) {

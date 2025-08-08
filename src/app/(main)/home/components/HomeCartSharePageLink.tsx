@@ -19,7 +19,7 @@ export const HomeCartSharePageLink = () => {
   useEffect(() => {
     // const data= localStorage.getItem("accessToken");
     const accessToken =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTQ0ODY0MDgsInBheWxvYWQiOnsiZW1haWwiOiJ0ZXN0NUBnbWFpbC5jb20iLCJ1c2VySWQiOjI0fSwiaWF0IjoxNzU0NDgyODA4fQ.kg9ZN9XWQe7a1JSVSHRglxLJo4qebm1w9YkviUbJfv8";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTQ1NDk5OTksInBheWxvYWQiOnsiZW1haWwiOiJ0ZXN0QGdtYWlsLmNvbSIsInVzZXJJZCI6MTR9LCJpYXQiOjE3NTQ1NDYzOTl9.xanoWe9Sspz-cXzo9yOMBh4_ZXS5PeuJRwK0PITlp-I";
 
     if (!accessToken) return;
 
