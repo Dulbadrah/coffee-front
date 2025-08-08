@@ -13,15 +13,16 @@ import axios from "axios";
 
 export default function AccountPage() {
   const { user } = useContext(UserContext);
+  const { profile } = useContext(UserContext);
   console.log(user);
 
-  const [name, setName] = useState(user?.name || "");
-  const [about, setAbout] = useState(user?.about || "");
-  const [url, setUrl] = useState(user?.socialMediaURL || "");
+  const [name, setName] = useState(profile?.name || "");
+  const [about, setAbout] = useState(profile?.about || "");
+  const [url, setUrl] = useState(profile?.socialMediaURL || "");
   const [loading, setLoading] = useState(false);
 
   const handleUpdate = async () => {
-    if (!user?.userId) {
+    if (!profile?.id) {
       console.error("User ID not found");
       return;
     }
@@ -59,7 +60,7 @@ export default function AccountPage() {
         <div className="flex flex-col items-center gap-2">
           <div className="relative">
             <Avatar className="w-24 h-24">
-              <AvatarImage src={user?.avatarImage || "/avatar.jpg"} />
+              <AvatarImage src={profile?.avatarImage || "/avatar.jpg"} />
               <AvatarFallback>
                 {name ? name.charAt(0).toUpperCase() : "?"}
               </AvatarFallback>

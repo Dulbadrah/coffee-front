@@ -1,19 +1,20 @@
 "use client";
 
-import { CurrentPofile } from "@/lib/types";
+import { CurrentPofile, ProfileType, User } from "@/lib/types";
 import axios, { AxiosResponse } from "axios";
 import { useRouter } from "next/navigation";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, use, useContext, useEffect, useState } from "react";
 
 type LoginResponse = {
   success: boolean;
   accessToken: string;
-  user: CurrentPofile;
+  user: User;
   isCreatedProfile: boolean;
 };
 
 type UserContextType = {
-  user: CurrentPofile | null;
+  profile: ProfileType | null;
+  user: User | null;
   loading: boolean;
   login: (
     email: string,
@@ -32,15 +33,16 @@ export default function UserContextProvider({
   children: React.ReactNode;
 }) {
   const router = useRouter();
-  const [user, setUser] = useState<CurrentPofile | null>(null);
+  const [user, setUser] = useState<User | null>(null);
+  const [profile, setProfile] = useState<ProfileType | null>(null);
   const [loading, setLoading] = useState(false);
-
+  console.log(user);
   const login = async (email: string, password: string) => {
     const response = await axios.post("http://localhost:4200/auth/login", {
       email: email,
       password: password,
     });
-
+    console.log("res", response);
     if (!response) return;
 
     localStorage.setItem("user", JSON.stringify(response.data));
@@ -58,10 +60,11 @@ export default function UserContextProvider({
     const getCurrentUser = async () => {
       try {
         setLoading(true);
-        const { profileCurrent } = await getCurrentUserByAccessToken(
+        const { profile, user } = await getCurrentUserByAccessToken(
           accessToken
         );
-        setUser(profileCurrent);
+        setProfile(profile);
+        setUser(user);
       } catch (error) {
         console.log(error);
       }
@@ -79,7 +82,7 @@ export default function UserContextProvider({
       },
     });
     const data = await response.json();
-    return data as { profileCurrent: CurrentPofile };
+    return data as { user: User; profile: ProfileType | null };
   };
 
   const logout = () => {
@@ -89,7 +92,7 @@ export default function UserContextProvider({
   };
 
   return (
-    <UserContext.Provider value={{ user, login, loading, logout }}>
+    <UserContext.Provider value={{ user, login, loading, logout, profile }}>
       {children}
     </UserContext.Provider>
   );
