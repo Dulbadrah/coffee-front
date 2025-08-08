@@ -40,7 +40,7 @@ export default function ProfileCard({ profile }: ProfileCardProps) {
         <div className="p-6 border rounded-lg">
           <div className="flex items-center gap-4 mb-4">
             <img
-              src="https://i.pravatar.cc/100"
+              src={user?.avatarImage}
               alt="Profile"
               className="w-14 h-14 rounded-full"
             />
