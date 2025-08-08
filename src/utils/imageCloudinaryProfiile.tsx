@@ -16,10 +16,6 @@ export default function CoverImageUploaderProfile({
 
   const coverUrl = process.env.NEXT_PUBLIC_CLOUDINARY_IMAGE || "";
 
-  const handleCancel = () => {
-    setImageUrl(null);
-  };
-
   const handleImageClick = () => {
     fileInputRef.current?.click();
   };

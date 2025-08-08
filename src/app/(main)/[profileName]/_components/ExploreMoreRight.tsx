@@ -17,6 +17,7 @@ export const ExploreMoreRight = () => {
   // const recipientId = 30;
 
   const { user } = useContext(UserContext);
+  const { profile } = useContext(UserContext);
 
   const handleSupport = async () => {
     try {
@@ -27,7 +28,7 @@ export const ExploreMoreRight = () => {
         specialMessage: message,
         socialURLOrBuyMeACoffee: socialUrl,
         donorId: user?.id,
-        recipientId: user?.userId,
+        recipientId: profile?.userId,
       };
 
       const response = await axios.post(

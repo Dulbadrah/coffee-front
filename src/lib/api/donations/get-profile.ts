@@ -5,9 +5,10 @@ export const getProfile = async (profileName: string) => {
     const response = await fetch(
       `http://localhost:4200/profile/view/${profileName}`
     );
-    const { profile } = await response.json();
-    
-    return profile as Profile;
+    console.log(response);
+    const { profileData } = await response.json();
+
+    return profileData as Profile;
   } catch (error) {
     console.log(error);
   }
