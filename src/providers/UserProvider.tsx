@@ -60,7 +60,7 @@ export default function UserContextProvider({
       const userData = await getCurrentUserByAccessToken(accessToken);
 
       setUser(userData);
-      // console.log("userData", userData);
+      console.log("userData", userData);
     };
 
     getCurrentUser();

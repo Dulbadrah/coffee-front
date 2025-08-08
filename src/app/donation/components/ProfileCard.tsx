@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DialogDemo } from "./Dialog";
 import { RecentSupporters } from "./RecentSupporters";
 import { Donation, ProfileType } from "@/lib/types";
+import { UserContext } from "@/providers/UserProvider";
 
 type ProfileCardProps = {
   profile?: ProfileType;
@@ -11,15 +12,15 @@ type ProfileCardProps = {
 
 export default function ProfileCard({ profile }: ProfileCardProps) {
   const [donations, setDonations] = useState<Donation[]>([]);
-  console.log(profile);
 
+  const { user } = useContext(UserContext);
+  console.log(user?.profileCurrent?.user.username);
   useEffect(() => {
-    console.log("this: ", profile?.user.username);
-    if (!profile?.user.username) return;
+    if (!user?.profileCurrent?.name) return;
     const getReceivedDonations = async (username: string) => {
       try {
         const response = await fetch(
-          `http://localhost:4200/donation/received/${username}`
+          `http://localhost:4200/donation/received/${user?.profileCurrent?.user.username}`
         );
 
         const { donations } = await response.json();
@@ -30,8 +31,8 @@ export default function ProfileCard({ profile }: ProfileCardProps) {
       }
     };
 
-    getReceivedDonations(profile?.user.username);
-  }, [profile?.user.username]);
+    getReceivedDonations(user?.profileCurrent?.name);
+  }, [user?.profileCurrent?.name]);
 
   return (
     <div className="bg-white rounded-xl p-6 shadow">
@@ -44,7 +45,9 @@ export default function ProfileCard({ profile }: ProfileCardProps) {
               className="w-14 h-14 rounded-full"
             />
             <div className="flex-1">
-              <h2 className="text-xl font-semibold">{profile?.name}</h2>
+              <h2 className="text-xl font-semibold">
+                {user?.profileCurrent?.name}
+              </h2>
             </div>
 
             <DialogDemo />
@@ -53,7 +56,9 @@ export default function ProfileCard({ profile }: ProfileCardProps) {
           <div className="border mt-6 mb-6"></div>
           <div className="mb-4">
             <h3 className="font-medium mb-1">About {profile?.name}</h3>
-            <p className="text-sm text-gray-600">{profile?.about}</p>
+            <p className="text-sm text-gray-600">
+              {user?.profileCurrent?.about}
+            </p>
           </div>
         </div>
       </div>
@@ -62,7 +67,7 @@ export default function ProfileCard({ profile }: ProfileCardProps) {
         <div className="p-6 border rounded-lg">
           <h3 className="font-medium mb-1">Social media URL</h3>
           <p className="text-sm text-blue-600 break-all">
-            {profile?.socialMediaURL}
+            {user?.profileCurrent?.socialMediaURL}
           </p>
         </div>
       </div>

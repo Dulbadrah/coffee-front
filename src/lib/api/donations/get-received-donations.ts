@@ -1,8 +1,4 @@
-// "use client";
-
 import { Donation } from "@/lib/types";
-import { UserContext } from "@/providers/UserProvider";
-import { useContext } from "react";
 
 export const getReceivedDonations = async (username: string) => {
   try {

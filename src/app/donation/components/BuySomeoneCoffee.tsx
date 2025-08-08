@@ -26,7 +26,7 @@ export const BuySomeoneCoffee = () => {
         amount: selectedAmount,
         specialMessage: message,
         socialURLOrBuyMeACoffee: socialUrl,
-        donorId: user?.profileCurrent?.userId,
+        donorId: user?.profileCurrent?.id,
         recipientId: user?.profileCurrent?.userId,
       };
 
