@@ -17,6 +17,8 @@ const LoginForm = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { login } = useContext(UserContext);
+  console.log("loginn:", login);
+  
 
   const formik = useFormik({
     initialValues: {
@@ -26,18 +28,37 @@ const LoginForm = () => {
     validationSchema: loginSchema,
     onSubmit: async (values) => {
       const { email, password } = values;
+      console.log("formik values:", values);
+      
 
+      // try {
+      //   const data = await login(email, password);
+
+      //   console.log("Login response data:", data);
+
+      //   if (data?.isCreatedProfile) {
+      //     router.push("/home");
+      //   } else {
+      //     router.push("/create-profile");
+      //   }
+      // } catch (error) {
+      //   alert('Email, password shalgaarai')
+      // }
       try {
-        const data = await login(email, password);
+          const data = await login (email, password);
+          console.log("dataaaaa:", data);
+          
+  if (data?.isCreatedProfile) {
+    console.log("Redirecting to /home");
+    router.push("/home");
+  } else {
+    console.log("Redirecting to /create-profile");
+    router.push("/create-profile");
+  }
+} catch (e) {
+  console.error("Router push error:", e);
+}
 
-        if (data?.isCreatedProfile) {
-          router.push("/home");
-        } else {
-          router.push("/create-profile");
-        }
-      } catch (error) {
-        alert('Email, password shalgaarai')
-      }
 
     },
   });

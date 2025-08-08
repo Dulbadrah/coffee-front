@@ -14,7 +14,7 @@ const signUpEmailSchema = object({
 });
 
 type SignUpEmailPasswordProps = {
-  setCurrentStep: any;
+  setCurrentStep: React.Dispatch<React.SetStateAction<number>>
   userName: string;
 };
 

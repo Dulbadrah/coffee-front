@@ -7,11 +7,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Donation } from "@/lib/types";
+
 import { useEffect, useState } from "react";
 
+type HomeTwoSectionProps = {
+  message: string;
+ totalEarnings: number
+}
+
 export const HomeTwoSection = () => {
-  const [moduls, setModuls] = useState<any>([]);
+  // const [moduls, setModuls] = useState<HomeTwoSectionProps[]>([]);
+const [moduls, setModuls] = useState<HomeTwoSectionProps | null>(null);
+
+console.log(typeof moduls?.totalEarnings);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,6 +29,7 @@ export const HomeTwoSection = () => {
           `${process.env.NEXT_PUBLIC_BACKEND_URL}/donation/total/${userId}`
         );
         const data = await response.json();
+        console.log ("zasnaa",data)
         setModuls(data);
       } catch (error) {
         console.error("Алдаа гарлаа:", error);

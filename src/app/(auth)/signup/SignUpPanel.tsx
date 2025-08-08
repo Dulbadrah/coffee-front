@@ -8,7 +8,7 @@ const SignupSchema = object({
   username: string().required('Username ee bichne uu!'),
 });
 type SignUpFormType = {
-  setCurrentStep: any;
+  setCurrentStep:React.Dispatch<React.SetStateAction<number>>
   userName: string;
   onChangeUsername: (_name: string)=> void
 
