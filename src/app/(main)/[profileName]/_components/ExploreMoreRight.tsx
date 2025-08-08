@@ -1,70 +1,108 @@
-import Image from "next/legacy/image";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+"use client";
 
-import { ProfileType } from "@/lib/types";
-import { QrCode } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { useContext, useState } from "react";
 
+import axios from "axios";
+import { Button } from "@/components/ui/button";
+import UserContextProvider, { UserContext } from "@/providers/UserProvider";
+import { QRDialog } from "@/app/donation/components/ScanQR";
+
+const amounts = [1, 2, 5, 10];
 export const ExploreMoreRight = () => {
-  const items = Array.from({ length: 4 });
+  const [selectedAmount, setSelectedAmount] = useState<number | null>(5);
+  const [socialUrl, setSocialUrl] = useState("");
+  const [message, setMessage] = useState("");
+
+  // const donorId = 29;
+  // const recipientId = 30;
+
+  const { user } = useContext(UserContext);
+
+  const handleSupport = async () => {
+    try {
+      if (!selectedAmount) return alert("Та мөнгөний дүнгээ сонгоно уу");
+
+      const donationPayload = {
+        amount: selectedAmount,
+        specialMessage: message,
+        socialURLOrBuyMeACoffee: socialUrl,
+        donorId: user?.profileCurrent?.id,
+        recipientId: user?.profileCurrent?.userId,
+      };
+
+      const response = await axios.post(
+        "http://localhost:4200/donation/create-donation",
+        donationPayload
+      );
+      alert("Амжилттай дэмжлээ!");
+    } catch (error) {
+      console.error("Donation failed:", error);
+      alert("Алдаа гарлаа. Дахин оролдоно уу.");
+    }
+  };
+
   return (
-    <div className="w-full h-[509px]  border bg-white p-4 rounded-sm overflow-hidden ">
-      <h2 className="text-lg font-semibold">Buy Space ranger a Coffee</h2>
-      <p className="mt-6">Select amount:</p>
-      <div className="flex gap-2 mt-2">
-        {items.map((_, i) => (
-          <div
-            key={i}
-            className="flex items-center justify-center border rounded-sm bg-[rgba(244,244,245,0.8)] cursor-pointer w-full h-[40px]"
-          >
-            <div className="flex items-center gap-1">
-              <Image src="/coffee.png" alt="coffee" width={16} height={16} />
-              <p className="text-sm font-medium">$1</p>
-            </div>
-          </div>
-        ))}
+    <div className="bg-white rounded-xl p-6 shadow  h-[509px] ">
+      <h2 className="text-xl font-semibold mb-4">Buy Jake a Coffee</h2>
+
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Select amount:
+        </label>
+        <div className="flex gap-2">
+          {amounts.map((amount) => (
+            <button
+              key={amount}
+              onClick={() => setSelectedAmount(amount)}
+              className={cn(
+                "flex items-center gap-1 border px-4 py-2 rounded-md text-sm",
+                selectedAmount === amount
+                  ? "border-black bg-gray-100 font-semibold"
+                  : "border-gray-300 hover:bg-gray-50"
+              )}
+            >
+              ☕ ${amount}
+            </button>
+          ))}
+        </div>
       </div>
-      <div className="mt-8">
-        <h2>Enter BuyMeCoffee or social acount URL:</h2>
+
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Enter BuyMeCoffee or social account URL:
+        </label>
         <input
-          className="w-full h-10 border mt-2 rounded-sm px-3"
-          type="text"
+          type="url"
+          value={socialUrl}
+          onChange={(e) => setSocialUrl(e.target.value)}
           placeholder="buymeacoffee.com/"
-        />
-      </div>
-      <div className="mt-8">
-        <h2>Special message:</h2>
-        <input
-          className="w-full h-[131px] mt-2 border rounded-sm pb-16 px-3 placeholder-gray-500"
-          type="text"
-          placeholder="Thank you for being so awesome everyday!"
+          className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
 
-      <Dialog>
-        <form>
-          <DialogTrigger asChild>
-            <button className="w-full  bg-black text-white rounded- text-sm p-2 rounded-[4px] mt-4">
-              Support
-            </button>
-          </DialogTrigger>
-          <DialogContent className="sm:max-w-[425px]">
-            <DialogHeader>
-              <DialogTitle>Edit profile</DialogTitle>
-            </DialogHeader>
-            <QrCode
-              size={256}
-              style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-              viewBox={`0 0 256 256`}
-            />
-          </DialogContent>
-        </form>
-      </Dialog>
+      <div className="mb-6">
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Special message:
+        </label>
+        <textarea
+          rows={4}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder="Please write your message here"
+          className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+        ></textarea>
+      </div>
+
+      <Button
+        onClick={handleSupport}
+        disabled={!selectedAmount}
+        className="w-full bg-gray-300 text-white py-2 rounded-md hover:bg-gray-400 transition disabled:opacity-50"
+      >
+        {" "}
+        Support{" "}
+      </Button>
+      {/* <QRDialog /> */}
     </div>
   );
 };

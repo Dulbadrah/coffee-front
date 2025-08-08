@@ -6,7 +6,6 @@ import { CreateProfileCard } from "./components/CreateProfileCard";
 
 const ExploreHome = async () => {
   const profiles = await getCreators();
-  console.log("profiles:", profiles);
 
   return (
     <div className="flex mx-30 p-20">
