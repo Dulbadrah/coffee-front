@@ -1,9 +1,10 @@
+import { getProfile } from "@/lib/api/donations/get-profile";
 import { BuySomeoneCoffee } from "./_components/BuySomeoneCoffee";
 import CoverImage from "./_components/CoverImage";
 import ProfileCard from "./_components/ProfileCard";
 
 const DonationPage = async ({ params }: { params: { username: string } }) => {
-  // const profile = await getProfile("");
+  const profile = await getProfile("");
   const { username } = params;
   return (
     <div className=" min-h-screen px-4">

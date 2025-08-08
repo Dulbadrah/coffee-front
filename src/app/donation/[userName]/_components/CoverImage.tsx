@@ -1,5 +1,3 @@
-// "use client";
-
 // import CoverImageUploader from "@/utils/ImageCloudinary";
 
 // export default function CoverImage() {
@@ -14,7 +12,7 @@
 //     </div>
 //   );
 // }
-
+"use client";
 import axios from "axios";
 import CoverImageUploader from "@/utils/ImageCloudinary";
 import { useContext } from "react";
