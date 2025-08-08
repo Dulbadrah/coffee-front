@@ -6,7 +6,6 @@ import { useContext, useState } from "react";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 import UserContextProvider, { UserContext } from "@/providers/UserProvider";
-import { QRDialog } from "@/app/donation/components/ScanQR";
 
 const amounts = [1, 2, 5, 10];
 export const ExploreMoreRight = () => {
@@ -27,8 +26,8 @@ export const ExploreMoreRight = () => {
         amount: selectedAmount,
         specialMessage: message,
         socialURLOrBuyMeACoffee: socialUrl,
-        donorId: user?.profileCurrent?.id,
-        recipientId: user?.profileCurrent?.userId,
+        donorId: user?.id,
+        recipientId: user?.userId,
       };
 
       const response = await axios.post(
