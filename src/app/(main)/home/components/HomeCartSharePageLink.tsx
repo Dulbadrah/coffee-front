@@ -15,21 +15,20 @@ import { AlertDialogHeader } from "../../../../components/ui/alert-dialog";
 import { UserContext } from "@/providers/UserProvider";
 
 export const HomeCartSharePageLink = () => {
-
-  const {user}=useContext(UserContext)
+  const { user } = useContext(UserContext);
   return (
     <div>
       <div className="flex justify-between gap-8 p-10">
         <div className="flex gap-3">
           <div>
             <img
-              src={"https://i.pravatar.cc/100"}
-              className="rounded-full mx-auto border-4 object-cover"
+              src={user?.avatarImage}
+              className=" w-24 h-24 rounded-full mx-auto border-4 object-cover"
             />
           </div>
           <div>
-            <div>{user?.profileCurrent?.user?.username || "No name"}</div>
-            <div>{user?.profileCurrent?.user?.email || "No email"}</div>
+            <div>{user?.user?.username || "No name"}</div>
+            <div>{user?.user?.email || "No email"}</div>
           </div>
         </div>
         <div>
@@ -48,7 +47,7 @@ export const HomeCartSharePageLink = () => {
                       <Input
                         id="link"
                         value={`https://yourdomain.com/user/${
-                          user?.profileCurrent?.user?.id || ""
+                          user?.user?.id || ""
                         }`}
                         readOnly
                       />

@@ -1,7 +1,7 @@
-'use client'
+"use client";
 
 import { Coffee } from "lucide-react";
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,19 +10,17 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { UserContext } from "@/providers/UserProvider";
 import { useContext } from "react";
-import { usePathname } from 'next/navigation'
-
-
+import { usePathname } from "next/navigation";
 
 export const Header = () => {
-  const { user, logout } = useContext(UserContext)
-  const pathName = usePathname()
+  const { user, logout } = useContext(UserContext);
+  const pathName = usePathname();
 
-  if(pathName === '/login' || pathName === '/signup') return null
+  if (pathName === "/login" || pathName === "/signup") return null;
 
   return (
     <div>
@@ -36,8 +34,7 @@ export const Header = () => {
           <div className="pt-1.5">Buy Me Coffee</div>
         </div>
         <div className="flex gap-6">
-
-          {/* <img src={user?.avatarImage} className="w-[40px] h-[40px]"></img> */}
+          <img src={user?.avatarImage} className="w-[40px] h-[40px]"></img>
 
           <div className="pt-1.5">{user?.name}</div>
           <div>
@@ -48,8 +45,9 @@ export const Header = () => {
               <DropdownMenuContent className="w-56">
                 <DropdownMenuSeparator />
                 <DropdownMenuRadioGroup>
-                  <DropdownMenuRadioItem value="" onClick={logout}>logout</DropdownMenuRadioItem>
-                  
+                  <DropdownMenuRadioItem value="" onClick={logout}>
+                    logout
+                  </DropdownMenuRadioItem>
                 </DropdownMenuRadioGroup>
               </DropdownMenuContent>
             </DropdownMenu>
