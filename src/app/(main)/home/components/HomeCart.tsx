@@ -7,7 +7,6 @@ type HomeCart = {
 };
 
 export const HomeCartCaruseil = ({ donation }: HomeCart) => {
-  // console.log("donate",donation);
   const { profile } = useContext(UserContext);
   return (
     <div className="flex flex-col gap-4 p-6">

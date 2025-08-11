@@ -13,9 +13,6 @@ export const ExploreMoreRight = () => {
   const [socialUrl, setSocialUrl] = useState("");
   const [message, setMessage] = useState("");
 
-  // const donorId = 29;
-  // const recipientId = 30;
-
   const { user } = useContext(UserContext);
   const { profile } = useContext(UserContext);
 

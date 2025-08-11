@@ -7,14 +7,9 @@ import { ExploreMoreRight } from "./ExploreMoreRight";
 
 type ProfileProps = {
   profile: ProfileType;
-  donations: Donation[];
-
 };
 
-export const ProfileComponent = ({
-  profile,
-  donations
-}: ProfileProps) => {
+export const ProfileComponent = ({ profile }: ProfileProps) => {
   return (
     <div className="relative">
       <img src="/frame.png" alt="frame" width={"100%"} height="100%" />

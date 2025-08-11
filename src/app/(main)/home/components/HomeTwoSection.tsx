@@ -12,14 +12,13 @@ import { useEffect, useState } from "react";
 
 type HomeTwoSectionProps = {
   message: string;
- totalEarnings: number
-}
+  totalEarnings: number;
+};
 
 export const HomeTwoSection = () => {
-  // const [moduls, setModuls] = useState<HomeTwoSectionProps[]>([]);
-const [moduls, setModuls] = useState<HomeTwoSectionProps | null>(null);
+  const [moduls, setModuls] = useState<HomeTwoSectionProps | null>();
 
-console.log(typeof moduls?.totalEarnings);
+  console.log(typeof moduls?.totalEarnings);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,7 +28,7 @@ console.log(typeof moduls?.totalEarnings);
           `${process.env.NEXT_PUBLIC_BACKEND_URL}/donation/total/${userId}`
         );
         const data = await response.json();
-        console.log ("zasnaa",data)
+        console.log("zasnaa", data);
         setModuls(data);
       } catch (error) {
         console.error("Алдаа гарлаа:", error);

@@ -11,13 +11,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@radix-ui/react-dialog";
-import { AlertDialogHeader } from "../../../../components/ui/alert-dialog";
+
 import { UserContext } from "@/providers/UserProvider";
 
 export const HomeCartSharePageLink = () => {
   const { user } = useContext(UserContext);
   const { profile } = useContext(UserContext);
-  console.log("mm", profile);
   return (
     <div>
       <div className="flex justify-between gap-8 p-10">
