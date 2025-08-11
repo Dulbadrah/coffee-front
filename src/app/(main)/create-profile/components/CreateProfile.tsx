@@ -47,7 +47,10 @@ export function CreateProfile() {
     url: Yup.string().url("Invalid URL").min(3).required("Required"),
   });
 
-  const handleSubmit = async (values: CreateProfileValues, { setSubmitting }: FormikHelpers<CreateProfileValues>) => {
+  const handleSubmit = async (
+    values: CreateProfileValues,
+    { setSubmitting }: FormikHelpers<CreateProfileValues>
+  ) => {
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/profile/create-profile/${user?.id}`,

@@ -1,13 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { Donation } from "@/lib/types";
+import { UserContext } from "@/providers/UserProvider";
 import { Heart } from "lucide-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 type RecentSupportersProps = {
   donations?: Donation[];
 };
 export const RecentSupporters = ({ donations }: RecentSupportersProps) => {
   const [visibleCount, setVisibleCount] = useState(3);
+
+  const { profile } = useContext(UserContext);
 
   const handleSeeMoreClick = () => {
     if (donations) {
@@ -37,7 +40,7 @@ export const RecentSupporters = ({ donations }: RecentSupportersProps) => {
       <h3 className="font-medium mb-4">Recent Supporters</h3>
       {donations.slice(0, visibleCount).map((donation, index) => (
         <div key={index} className="flex items-center gap-3 mb-4 last:mb-0">
-          <img src="/coffee.profile.jpg" className="w-10 h-10 rounded-full" />
+          <img src={profile?.avatarImage} className="w-10 h-10 rounded-full" />
           <div className="flex-1">
             <div className="font-semibold text-sm">
               {donation.donor?.username} bought ${donation?.amount} coffee

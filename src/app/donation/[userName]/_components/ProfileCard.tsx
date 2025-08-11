@@ -13,7 +13,6 @@ type ProfileCardProps = {
 export default function ProfileCard({ profiles }: ProfileCardProps) {
   const [donations, setDonations] = useState<Donation[]>([]);
 
-  // const { user } = useContext(UserContext);
   const { profile } = useContext(UserContext);
 
   useEffect(() => {
