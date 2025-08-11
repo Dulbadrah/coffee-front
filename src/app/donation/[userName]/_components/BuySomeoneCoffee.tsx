@@ -26,8 +26,8 @@ export const BuySomeoneCoffee = () => {
         amount: selectedAmount,
         specialMessage: message,
         socialURLOrBuyMeACoffee: socialUrl,
-        donorId: profile?.userId,
-        recipientId: profile?.id,
+        donorId: profile?.id,
+        recipientId: profile?.userId,
       };
 
       const response = await axios.post(
@@ -108,4 +108,4 @@ export const BuySomeoneCoffee = () => {
   );
 };
 //webhook tusad ni api
-//food layout dr toast bsn shadcn dr toast yarn add sooner 
+//food layout dr toast bsn shadcn dr toast yarn add sooner
