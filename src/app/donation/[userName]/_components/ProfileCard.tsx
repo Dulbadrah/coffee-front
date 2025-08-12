@@ -6,18 +6,16 @@ import { RecentSupporters } from "./RecentSupporters";
 import { Donation, ProfileType } from "@/lib/types";
 import { UserContext } from "@/providers/UserProvider";
 
-type ProfileCardProps = {
-  profiles?: ProfileType;
-};
 
-export default function ProfileCard({ profiles }: ProfileCardProps) {
+
+export default function ProfileCard() {
   const [donations, setDonations] = useState<Donation[]>([]);
 
   const { profile } = useContext(UserContext);
-
+console.log(donations)
   useEffect(() => {
     if (!profile?.name) return;
-    const getReceivedDonations = async (username: string) => {
+    const getReceivedDonations = async (name: string) => {
       try {
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_BACKEND_URL}/donation/received/${profile?.name}`
