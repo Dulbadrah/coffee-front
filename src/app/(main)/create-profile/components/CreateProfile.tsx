@@ -31,7 +31,6 @@ export function CreateProfile() {
   const router = useRouter();
   const [coverImage, setCoverImage] = useState("");
   const { user } = useContext(UserContext);
-  console.log(user);
   const handleCoverSaveProfile = (imageUrl: string) => {
     setCoverImage(imageUrl);
     console.log("Cover image saved:", imageUrl);
