@@ -8,6 +8,7 @@ type HomeCart = {
 
 export const HomeCartCaruseil = ({ donation }: HomeCart) => {
   const { profile } = useContext(UserContext);
+
   return (
     <div className="flex flex-col gap-4 p-6">
       <div className="flex justify-between">
@@ -24,7 +25,7 @@ export const HomeCartCaruseil = ({ donation }: HomeCart) => {
           </div>
         </div>
         <div>
-          <div>{donation.amount}</div>
+          <div>{donation.amount}$</div>
           <div>{donation.donor.createdAt}</div>
         </div>
       </div>

@@ -35,7 +35,7 @@ export const Header = () => {
           <div className="pt-1.5">Buy Me Coffee</div>
         </div>
         <div className="flex gap-6">
-          <img src={profile?.avatarImage} className="w-[40px] h-[40px]"></img>
+          <img src={profile?.avatarImage} className="w-[40px] h-[40px] rounded-full mx-auto border-4 object-cover"></img>
 
           <div className="pt-1.5">{profile?.name}</div>
           <div>
