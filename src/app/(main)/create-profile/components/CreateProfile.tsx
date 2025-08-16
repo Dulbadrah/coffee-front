@@ -31,9 +31,9 @@ export function CreateProfile() {
   const router = useRouter();
   const [coverImage, setCoverImage] = useState("");
   const { user } = useContext(UserContext);
-
   const handleCoverSaveProfile = (imageUrl: string) => {
     setCoverImage(imageUrl);
+    console.log("Cover image saved:", imageUrl);
   };
 
   const validationSchema = Yup.object({
@@ -50,25 +50,25 @@ export function CreateProfile() {
     values: CreateProfileValues,
     { setSubmitting }: FormikHelpers<CreateProfileValues>
   ) => {
-    if (!user?.id) {
-      console.error("User not found");
-      setSubmitting(false);
-      return;
-    }
-
     try {
-      await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/profile/create-profile/${user.id}`,
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/profile/create-profile/${user?.id}`,
         {
           name: values.name,
           about: values.about,
           socialMediaURL: values.url,
-          backgroundImage: coverImage,
+          backgroundImage: "",
           avatarImage: coverImage,
           successMessage: "",
         }
       );
-      router.push("/payment");
+
+      if (response.status === 200) {
+        console.log("Profile created successfully:", response.data);
+        router.push("/home");
+      } else {
+        console.error("Failed to create profile:", response.status);
+      }
     } catch (error) {
       console.error("Error creating profile:", error);
     } finally {
@@ -152,7 +152,7 @@ export function CreateProfile() {
                 >
                   Cancel
                 </Button>
-                <Button type="submit" disabled={isSubmitting}>
+                <Button type="submit" disabled={isSubmitting || !handleSubmit}>
                   {isSubmitting ? "Saving..." : "Save Profile"}
                 </Button>
               </DialogFooter>
@@ -162,4 +162,7 @@ export function CreateProfile() {
       </DialogContent>
     </Dialog>
   );
+}
+function setSearchValue(arg0: string) {
+  throw new Error("Function not implemented.");
 }
