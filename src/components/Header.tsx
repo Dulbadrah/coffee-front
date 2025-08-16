@@ -41,7 +41,7 @@ export const Header = () => {
           <div>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline">Profile</Button>
+                <Button variant="outline">Login</Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56">
                 <DropdownMenuSeparator />
