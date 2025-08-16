@@ -7,7 +7,6 @@ import { ExploreMoreRight } from "./ExploreMoreRight";
 import { RecentSupporters } from "@/app/donation/[userName]/_components/RecentSupporters";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "@/providers/UserProvider";
-import { getReceivedDonations } from "@/lib/api/donations/get-received-donations";
 
 type ProfileProps = {
   profile: ProfileType;
@@ -36,26 +35,32 @@ export const ProfileComponent = ({ profile }: ProfileProps) => {
   }, [profile?.name]);
 
   const { user } = useContext(UserContext);
-  return (
-    <div className="relative">
-      <img src="/frame.png" alt="frame" width={"100%"} height="100%" />
 
-      <div className="absolute z-50 top-60 flex w-full gap-8 p-4">
-        <div className="flex-1/2 ">
+  return (
+    <div className="max-w-5xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8">
+      {/* Left side */}
+      <div className="md:col-span-2 space-y-6">
+        <div className="border rounded-2xl p-6 shadow-sm bg-white">
           <ProfileAbout
             name={profile?.name}
             about={profile?.about}
             img={profile?.avatarImage}
           />
-          <div className="mb-4">
-            <SocialProfile url={profile?.socialMediaURL} />
-          </div>
-          <div className="mb-4">
-            <RecentSupporters donations={donations} />
-          </div>
         </div>
-        <div className="flex-1/2">
-          <ExploreMoreRight />
+
+        <div className="border rounded-2xl p-6 shadow-sm bg-white">
+          <SocialProfile url={profile?.socialMediaURL} />
+        </div>
+
+        <div className="border rounded-2xl p-6 shadow-sm bg-white">
+          <RecentSupporters donations={donations} />
+        </div>
+      </div>
+
+      {/* Right side */}
+      <div className="md:col-span-1 space-y-6">
+        <div className="border rounded-2xl p-6 shadow-sm bg-white">
+          {/* <ExploreMoreRight /> */}
         </div>
       </div>
     </div>

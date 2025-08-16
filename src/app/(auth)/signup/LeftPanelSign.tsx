@@ -1,10 +1,12 @@
+import { Coffee } from "lucide-react";
 import React from "react";
 
 const LeftPanelSign = () => {
   return (
     <div className="w-1/2 bg-amber-400 flex flex-col justify-between p-8 text-center">
       <div className="text-left text-black font-semibold text-lg flex items-center gap-2">
-        <img className="h-[20px] w-[20px]" src="/img/coffee.png" alt="" /> Buy
+       <Coffee/>
+        Buy
         Me Coffee
       </div>
       <div className="flex flex-col justify-center items-center flex-grow">

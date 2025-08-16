@@ -9,26 +9,31 @@ type CreateProfileCardProps = {
 export const CreateProfileCard = ({ profile }: CreateProfileCardProps) => {
   const { avatarImage, name, about, socialMediaURL } = profile;
   return (
-    <div className="border-[1] w-[1690px] rounded-sm  flex flex-col mt-6 pb-4">
-      <div className="flex justify-between mt-6">
-        <div className="ml-5">
-          <img src={avatarImage || "/Profile.png"} />
+    <div className="border rounded-md w-[700px] flex flex-col mt-6 pb-4 shadow-sm">
+      <div className="flex justify-between items-center mt-6 px-5">
+        <div className="flex items-center gap-3">
+          <img
+            src={avatarImage || "/Profile.png"}
+            alt={name}
+            className="w-16 h-16 rounded-full object-cover"
+          />
           <h2 className="text-lg font-semibold">{name}</h2>
         </div>
-        <div>
-        <Link href={profile.name}>
-        <Button className="mr-5">View profile</Button>
+        <Link href={`/profile/${profile.name}`}>
+          <Button>View profile</Button>
         </Link>
-        </div>
       </div>
-      <div className="flex mt-2">
-        <div className="w-1/2 ml-5">
+      
+      <div className="flex mt-4 px-5 gap-6">
+        <div className="w-1/2">
           <h2 className="font-semibold">About {name}</h2>
-          <p>{about}</p>
+          <p className="text-sm text-gray-700">{about}</p>
         </div>
-        <div className="flex flex-col  break-words max-w-1/2 ">
+        <div className="w-1/2 break-words">
           <p className="font-semibold">Social media URL</p>
-          <p className="break-words text-sm">{socialMediaURL}</p>
+          <p className="text-sm text-blue-600 break-words">
+            {socialMediaURL || "Not provided"}
+          </p>
         </div>
       </div>
     </div>

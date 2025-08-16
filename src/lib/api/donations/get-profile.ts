@@ -1,38 +1,29 @@
-// import { Profile } from "@/lib/types";
-
-// export const getProfile = async (profileName: string) => {
-//   try {
-//     const response = await fetch(
-//       `${process.env.NEXT_PUBLIC_BACKEND_URL}/profile/view/${profileName}`
-//     );
-//     console.log(response);
-//     const { profileData } = await response.json();
-
-//     return profileData as Profile;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-
-export const getProfile = async (profileName: string) => {
+export const getProfile = async (username: string) => {
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/profile/view/${profileName}`
-    );
+    // URL зөв үүсч байгааг шалгах
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/profile/view/${encodeURIComponent(username)}`;
+    console.log("Fetching profile from:", url);
+
+    const response = await fetch(url);
 
     if (!response.ok) {
-      console.error("API response not OK:", response.status);
+      console.error("API response not OK:", response.status, await response.text());
       return null;
     }
 
-    const { profile } = await response.json();
-    console.log("✅ API profile:", profile);
+    const data = await response.json();
 
-    return profile;
+    // JSON дотор 'profile' байгаа эсэхийг шалгах
+    if (!data || !data.profile) {
+      console.error("Profile not found in API response:", data);
+      return null;
+    }
+
+    console.log("✅ API profile:", data.profile);
+    return data.profile;
+
   } catch (error) {
     console.error("❌ Error fetching profile:", error);
     return null;
   }
 };
-
