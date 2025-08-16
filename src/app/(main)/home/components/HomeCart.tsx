@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Donation } from "@/lib/types";
 import { UserContext } from "@/providers/UserProvider";
 import { useContext } from "react";
@@ -13,11 +14,13 @@ export const HomeCartCaruseil = ({ donation }: HomeCart) => {
     <div className="flex flex-col gap-4 p-6">
       <div className="flex justify-between">
         <div className="flex gap-3">
-          <div>
-            <img
-              src={profile?.avatarImage}
-              className="w-[40px] h-[40px] rounded-full mx-auto border-4 object-cover"
-            ></img>
+          <div className="relative w-[40px] h-[40px] rounded-full border-4 overflow-hidden">
+            <Image
+              src={profile?.avatarImage || "/Profile.png"}
+              alt="/Avatar.png"
+              fill
+              className="object-cover"
+            />
           </div>
           <div>
             <div>{donation.donor.username}</div>
@@ -26,10 +29,10 @@ export const HomeCartCaruseil = ({ donation }: HomeCart) => {
         </div>
         <div>
           <div>{donation.amount}$</div>
-          <div>{donation.donor.createdAt}</div>
+          <div>{new Date(donation.donor.createdAt).toLocaleDateString()}</div>
         </div>
       </div>
-      <div className="max-w-[650]">comment: {donation.specialMessage}</div>
+      <div className="max-w-[650px]">comment: {donation.specialMessage}</div>
     </div>
   );
 };

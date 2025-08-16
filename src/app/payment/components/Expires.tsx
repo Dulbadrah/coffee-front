@@ -6,7 +6,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Control, useFormContext } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 
 export const Expires = () => {
   const { control } = useFormContext();

@@ -1,35 +1,32 @@
 "use client";
 
 import { useContext, useEffect, useState } from "react";
+import Image from "next/image";
 import { DialogDemo } from "./Dialog";
 import { RecentSupporters } from "./RecentSupporters";
-import { Donation, ProfileType } from "@/lib/types";
+import { Donation } from "@/lib/types";
 import { UserContext } from "@/providers/UserProvider";
-
-
 
 export default function ProfileCard() {
   const [donations, setDonations] = useState<Donation[]>([]);
-
   const { profile } = useContext(UserContext);
-console.log(donations)
+
   useEffect(() => {
     if (!profile?.name) return;
-    const getReceivedDonations = async (name: string) => {
+
+    const getReceivedDonations = async () => {
       try {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/donation/received/${profile?.name}`
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/donation/received/${profile.name}`
         );
-
         const { donations } = await response.json();
-
         setDonations(donations as Donation[]);
       } catch (error) {
         console.log(error);
       }
     };
 
-    getReceivedDonations(profile?.name);
+    getReceivedDonations();
   }, [profile?.name]);
 
   return (
@@ -37,11 +34,14 @@ console.log(donations)
       <div className="mb-4">
         <div className="p-6 border rounded-lg">
           <div className="flex items-center gap-4 mb-4">
-            <img
-              src={profile?.avatarImage}
-              alt="Profile"
-              className="w-14 h-14 rounded-full"
-            />
+            <div className="relative w-14 h-14 rounded-full overflow-hidden">
+              <Image
+                src={profile?.avatarImage || "/Profile.png"}
+                alt={profile?.name || "/Profile.png"}
+                fill
+                className="object-cover"
+              />
+            </div>
             <div className="flex-1">
               <h2 className="text-xl font-semibold">{profile?.name}</h2>
             </div>

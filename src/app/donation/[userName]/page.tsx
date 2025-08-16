@@ -1,4 +1,4 @@
-import { getProfile } from "@/lib/api/donations/get-profile";
+
 import { BuySomeoneCoffee } from "./_components/BuySomeoneCoffee";
 import CoverImage from "./_components/CoverImage";
 import ProfileCard from "./_components/ProfileCard";

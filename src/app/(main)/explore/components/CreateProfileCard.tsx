@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ProfileType } from "@/lib/types";
 import Link from "next/link";
@@ -12,11 +13,14 @@ export const CreateProfileCard = ({ profile }: CreateProfileCardProps) => {
     <div className="border rounded-md w-[700px] flex flex-col mt-6 pb-4 shadow-sm">
       <div className="flex justify-between items-center mt-6 px-5">
         <div className="flex items-center gap-3">
-          <img
-            src={avatarImage || "/Profile.png"}
-            alt={name}
-            className="w-16 h-16 rounded-full object-cover"
-          />
+          <div className="relative w-16 h-16">
+            <Image
+              src={avatarImage || "/Profile.png"}
+              alt={name}
+              fill
+              className="rounded-full object-cover"
+            />
+          </div>
           <h2 className="text-lg font-semibold">{name}</h2>
         </div>
         <Link href={`/profile/${profile.name}`}>

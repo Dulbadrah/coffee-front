@@ -1,6 +1,6 @@
 import { ProfileComponent } from "./_components/Profile";
 import { getProfile } from "../../../../lib/api/donations/get-profile";
-import { UserName } from "@/app/payment/components/UserName";
+
 
 type ProfilePageProps = {
   params: Promise<{ profileName: string }>;

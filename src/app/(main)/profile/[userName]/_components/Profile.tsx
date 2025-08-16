@@ -3,10 +3,9 @@
 import { ProfileAbout } from "./ProfileAbout";
 import { Donation, ProfileType } from "@/lib/types";
 import { SocialProfile } from "./SocialProfile";
-import { ExploreMoreRight } from "./ExploreMoreRight";
 import { RecentSupporters } from "@/app/donation/[userName]/_components/RecentSupporters";
-import { useContext, useEffect, useState } from "react";
-import { UserContext } from "@/providers/UserProvider";
+import { useEffect, useState } from "react";
+
 
 type ProfileProps = {
   profile: ProfileType;
@@ -16,25 +15,24 @@ export const ProfileComponent = ({ profile }: ProfileProps) => {
   const [donations, setDonations] = useState<Donation[]>([]);
 
   useEffect(() => {
-    if (!profile?.name) return;
-    const getReceivedDonations = async (username: string) => {
-      try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/donation/received/${profile?.name}`
-        );
+  if (!profile?.name) return;
 
-        const { donations } = await response.json();
+  const getReceivedDonations = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/donation/received/${profile.name}`
+      );
 
-        setDonations(donations as Donation[]);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+      const { donations } = await response.json();
+      setDonations(donations as Donation[]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-    getReceivedDonations(profile?.name);
-  }, [profile?.name]);
+  getReceivedDonations();
+}, [profile?.name]);
 
-  const { user } = useContext(UserContext);
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8">

@@ -31,10 +31,11 @@ export function CreateProfile() {
   const router = useRouter();
   const [coverImage, setCoverImage] = useState("");
   const { user } = useContext(UserContext);
+
   const handleCoverSaveProfile = (imageUrl: string) => {
     setCoverImage(imageUrl);
   };
-console.log(user?.id)
+
   const validationSchema = Yup.object({
     name: Yup.string()
       .min(3, "Name must be at least 3 characters")
@@ -49,25 +50,25 @@ console.log(user?.id)
     values: CreateProfileValues,
     { setSubmitting }: FormikHelpers<CreateProfileValues>
   ) => {
+    if (!user?.id) {
+      console.error("User not found");
+      setSubmitting(false);
+      return;
+    }
+
     try {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/profile/create-profile/${user?.id}`,
+      await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/profile/create-profile/${user.id}`,
         {
           name: values.name,
           about: values.about,
           socialMediaURL: values.url,
-          backgroundImage: "",
+          backgroundImage: coverImage,
           avatarImage: coverImage,
           successMessage: "",
         }
       );
-
-      if (response.status === 200) {
-        console.log("Profile created successfully:", response.data);
-        router.push("/payment");
-      } else {
-        console.error("Failed to create profile:", response.status);
-      }
+      router.push("/payment");
     } catch (error) {
       console.error("Error creating profile:", error);
     } finally {
@@ -151,7 +152,7 @@ console.log(user?.id)
                 >
                   Cancel
                 </Button>
-                <Button type="submit" disabled={isSubmitting || !handleSubmit}>
+                <Button type="submit" disabled={isSubmitting}>
                   {isSubmitting ? "Saving..." : "Save Profile"}
                 </Button>
               </DialogFooter>
@@ -161,7 +162,4 @@ console.log(user?.id)
       </DialogContent>
     </Dialog>
   );
-}
-function setSearchValue(arg0: string) {
-  throw new Error("Function not implemented.");
 }
