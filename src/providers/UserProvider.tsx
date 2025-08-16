@@ -37,10 +37,16 @@ export default function UserContextProvider({
 
   const login = async (email: string, password: string): Promise<LoginResponse> => {
     try {
-      const response = await axios.post<LoginResponse>(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`,
-        { email, password }
-      );
+     const response = await axios.post<LoginResponse>(
+  `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`,
+  { email, password },
+  {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }
+);
+
 
       localStorage.setItem("user", JSON.stringify(response.data.user));
       localStorage.setItem("accessToken", response.data.accessToken);
