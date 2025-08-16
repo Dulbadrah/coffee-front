@@ -17,7 +17,7 @@ import { usePathname } from "next/navigation";
 import { UserContext } from "@/providers/UserProvider";
 
 export const Header = () => {
-  const { logout, profile, user } = useContext(UserContext);
+  const { logout, profile, } = useContext(UserContext);
   const pathName = usePathname();
 
   // Login/signup page-д Header-г харуулахгүй
